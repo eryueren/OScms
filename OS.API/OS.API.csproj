@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DA96C22A-6A50-456A-AF0B-30041434B896}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OS.API</RootNamespace>
+    <AssemblyName>OS.API</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="LitJson">
+      <HintPath>..\packages\LitJson.0.7.0\lib\LitJson.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AliPay.cs" />
+    <Compile Include="OAuth\feixin_helper.cs" />
+    <Compile Include="OAuth\kaixin_helper.cs" />
+    <Compile Include="OAuth\oauth_config.cs" />
+    <Compile Include="OAuth\oauth_helper.cs" />
+    <Compile Include="OAuth\qq_helper.cs" />
+    <Compile Include="OAuth\renren_helper.cs" />
+    <Compile Include="OAuth\sina_helper.cs" />
+    <Compile Include="OAuth\taobao_helper.cs" />
+    <Compile Include="Payment\Alipay\AlipayConfig.cs" />
+    <Compile Include="Payment\Alipay\AlipayCore.cs" />
+    <Compile Include="Payment\Alipay\AlipayNotify.cs" />
+    <Compile Include="Payment\Alipay\AlipayService.cs" />
+    <Compile Include="Payment\Alipay\AlipaySubmit.cs" />
+    <Compile Include="Payment\Tenpay\ClientResponseHandler.cs" />
+    <Compile Include="Payment\Tenpay\MD5Util.cs" />
+    <Compile Include="Payment\Tenpay\RequestHandler.cs" />
+    <Compile Include="Payment\Tenpay\ResponseHandler.cs" />
+    <Compile Include="Payment\Tenpay\TenpayHttpClient.cs" />
+    <Compile Include="Payment\Tenpay\TenpayUtil.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OS.BLL\OS.BLL.csproj">
+      <Project>{f00cb4bf-66e9-4895-831d-b54cb3bfbc79}</Project>
+      <Name>OS.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OS.Common\OS.Common.csproj">
+      <Project>{f20ef6c1-6a30-4c21-a649-0ccf8d3da387}</Project>
+      <Name>OS.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OS.Model\OS.Model.csproj">
+      <Project>{a5a473d4-dfd6-477a-8536-ad35aa47778c}</Project>
+      <Name>OS.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,16 @@
+E:\code2015\O_OScms\code\OScms\OS.API\bin\Debug\OS.API.dll
+E:\code2015\O_OScms\code\OScms\OS.API\bin\Debug\OS.API.pdb
+E:\code2015\O_OScms\code\OScms\OS.API\bin\Debug\LitJson.dll
+E:\code2015\O_OScms\code\OScms\OS.API\bin\Debug\OS.BLL.dll
+E:\code2015\O_OScms\code\OScms\OS.API\bin\Debug\OS.Common.dll
+E:\code2015\O_OScms\code\OScms\OS.API\bin\Debug\OS.Model.dll
+E:\code2015\O_OScms\code\OScms\OS.API\bin\Debug\OS.DAL.dll
+E:\code2015\O_OScms\code\OScms\OS.API\bin\Debug\OS.DBUtility.dll
+E:\code2015\O_OScms\code\OScms\OS.API\bin\Debug\OS.BLL.pdb
+E:\code2015\O_OScms\code\OScms\OS.API\bin\Debug\OS.Common.pdb
+E:\code2015\O_OScms\code\OScms\OS.API\bin\Debug\OS.Model.pdb
+E:\code2015\O_OScms\code\OScms\OS.API\bin\Debug\OS.DAL.pdb
+E:\code2015\O_OScms\code\OScms\OS.API\bin\Debug\OS.DBUtility.pdb
+E:\code2015\O_OScms\code\OScms\OS.API\obj\Debug\OS.API.csprojResolveAssemblyReference.cache
+E:\code2015\O_OScms\code\OScms\OS.API\obj\Debug\OS.API.dll
+E:\code2015\O_OScms\code\OScms\OS.API\obj\Debug\OS.API.pdb

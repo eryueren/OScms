@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5114BFE4-658D-439F-8364-CB912DF4CB73}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OS.DAL</RootNamespace>
+    <AssemblyName>OS.DAL</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="channels\article.cs" />
+    <Compile Include="channels\category.cs" />
+    <Compile Include="configs\mail_template.cs" />
+    <Compile Include="configs\sys_config.cs" />
+    <Compile Include="configs\urls_config.cs" />
+    <Compile Include="configs\url_rewrite.cs" />
+    <Compile Include="configs\user_config.cs" />
+    <Compile Include="configs\yl_temp.cs" />
+    <Compile Include="contents\article.cs" />
+    <Compile Include="contents\article_albums.cs" />
+    <Compile Include="contents\article_attach.cs" />
+    <Compile Include="contents\article_attribute_field.cs" />
+    <Compile Include="contents\article_category.cs" />
+    <Compile Include="contents\article_comment.cs" />
+    <Compile Include="contents\article_images_size.cs" />
+    <Compile Include="contents\category_field.cs" />
+    <Compile Include="managers\manager.cs" />
+    <Compile Include="managers\manager_log.cs" />
+    <Compile Include="managers\manager_role.cs" />
+    <Compile Include="plugins\advert.cs" />
+    <Compile Include="plugins\advert_banner.cs" />
+    <Compile Include="plugins\feedbackl.cs" />
+    <Compile Include="plugins\link.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="users\users.cs" />
+    <Compile Include="users\user_amount_log.cs" />
+    <Compile Include="users\user_code.cs" />
+    <Compile Include="users\user_groups.cs" />
+    <Compile Include="users\user_login_log.cs" />
+    <Compile Include="users\user_message.cs" />
+    <Compile Include="users\user_oauth.cs" />
+    <Compile Include="users\user_oauth_app.cs" />
+    <Compile Include="users\user_point_log.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OS.Common\OS.Common.csproj">
+      <Project>{f20ef6c1-6a30-4c21-a649-0ccf8d3da387}</Project>
+      <Name>OS.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OS.DBUtility\OS.DBUtility.csproj">
+      <Project>{4fbd4cfc-2568-4c8a-a83f-8a5201874db5}</Project>
+      <Name>OS.DBUtility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OS.Model\OS.Model.csproj">
+      <Project>{a5a473d4-dfd6-477a-8536-ad35aa47778c}</Project>
+      <Name>OS.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

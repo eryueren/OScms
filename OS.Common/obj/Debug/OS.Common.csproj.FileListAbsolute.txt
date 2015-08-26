@@ -1,0 +1,4 @@
+E:\code2015\O_OScms\code\OScms\OS.Common\bin\Debug\OS.Common.dll
+E:\code2015\O_OScms\code\OScms\OS.Common\bin\Debug\OS.Common.pdb
+E:\code2015\O_OScms\code\OScms\OS.Common\obj\Debug\OS.Common.dll
+E:\code2015\O_OScms\code\OScms\OS.Common\obj\Debug\OS.Common.pdb

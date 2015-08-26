@@ -1,0 +1,5 @@
+E:\code2015\O_OScms\code\OScms\OS.DBUtility\bin\Debug\OS.DBUtility.dll
+E:\code2015\O_OScms\code\OScms\OS.DBUtility\bin\Debug\OS.DBUtility.pdb
+E:\code2015\O_OScms\code\OScms\OS.DBUtility\obj\Debug\OS.DBUtility.dll
+E:\code2015\O_OScms\code\OScms\OS.DBUtility\obj\Debug\OS.DBUtility.pdb
+E:\code2015\O_OScms\code\OScms\OS.DBUtility\obj\Debug\OS.DBUtility.csprojResolveAssemblyReference.cache

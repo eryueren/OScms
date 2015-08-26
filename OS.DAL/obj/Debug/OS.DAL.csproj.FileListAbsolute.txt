@@ -1,0 +1,11 @@
+E:\code2015\O_OScms\code\OScms\OS.DAL\bin\Debug\OS.DAL.dll
+E:\code2015\O_OScms\code\OScms\OS.DAL\bin\Debug\OS.DAL.pdb
+E:\code2015\O_OScms\code\OScms\OS.DAL\bin\Debug\OS.Common.dll
+E:\code2015\O_OScms\code\OScms\OS.DAL\bin\Debug\OS.DBUtility.dll
+E:\code2015\O_OScms\code\OScms\OS.DAL\bin\Debug\OS.Model.dll
+E:\code2015\O_OScms\code\OScms\OS.DAL\bin\Debug\OS.Common.pdb
+E:\code2015\O_OScms\code\OScms\OS.DAL\bin\Debug\OS.DBUtility.pdb
+E:\code2015\O_OScms\code\OScms\OS.DAL\bin\Debug\OS.Model.pdb
+E:\code2015\O_OScms\code\OScms\OS.DAL\obj\Debug\OS.DAL.csprojResolveAssemblyReference.cache
+E:\code2015\O_OScms\code\OScms\OS.DAL\obj\Debug\OS.DAL.dll
+E:\code2015\O_OScms\code\OScms\OS.DAL\obj\Debug\OS.DAL.pdb

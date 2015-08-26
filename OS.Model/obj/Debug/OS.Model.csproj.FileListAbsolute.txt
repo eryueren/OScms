@@ -1,0 +1,4 @@
+E:\code2015\O_OScms\code\OScms\OS.Model\bin\Debug\OS.Model.dll
+E:\code2015\O_OScms\code\OScms\OS.Model\bin\Debug\OS.Model.pdb
+E:\code2015\O_OScms\code\OScms\OS.Model\obj\Debug\OS.Model.dll
+E:\code2015\O_OScms\code\OScms\OS.Model\obj\Debug\OS.Model.pdb
