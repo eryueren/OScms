@@ -17,7 +17,7 @@ namespace OS.Web.manage.settings
         {
             if (!Page.IsPostBack)
             {
-                ChkAdminLevel("plugin_baseback", YLEnums.ActionEnum.View.ToString()); //检查权限
+                ChkAdminLevel("plugin_baseback", OSEnums.ActionEnum.View.ToString()); //检查权限
                 RptBind();
             }
         }
@@ -53,7 +53,7 @@ namespace OS.Web.manage.settings
         //备份数据库
         protected void lbtnBack_Click(object sender, EventArgs e)
         {
-            ChkAdminLevel("plugin_baseback", YLEnums.ActionEnum.Back.ToString()); //检查权限
+            ChkAdminLevel("plugin_baseback", OSEnums.ActionEnum.Back.ToString()); //检查权限
             try
             {
                 string str_filename = Common.Utils.GetRamCode();
@@ -67,7 +67,7 @@ namespace OS.Web.manage.settings
                 string Sql = "backup DATABASE [" + a_dbNameS[1].ToString() + "] to disk='" + filename + "' with format";
                 DBUtility.DbHelperSQL.ExecuteSql(Sql);
 
-                AddAdminLog(YLEnums.ActionEnum.Back.ToString(), "备份数据库文件:" + filename); //记录日志
+                AddAdminLog(OSEnums.ActionEnum.Back.ToString(), "备份数据库文件:" + filename); //记录日志
                 Response.Redirect("databack.aspx");
                 
             }
@@ -85,8 +85,8 @@ namespace OS.Web.manage.settings
             switch (e.CommandName)
             {
                 case "lbtnRestore":
-                    ChkAdminLevel("plugin_baseback", YLEnums.ActionEnum.Restore.ToString()); //检查权限
-                    AddAdminLog(YLEnums.ActionEnum.Restore.ToString(), "备份数据库备份文件：" + filename); //记录日志
+                    ChkAdminLevel("plugin_baseback", OSEnums.ActionEnum.Restore.ToString()); //检查权限
+                    AddAdminLog(OSEnums.ActionEnum.Restore.ToString(), "备份数据库备份文件：" + filename); //记录日志
                     //string dbCstring = DBUtility.DbHelperSQL.connectionString;
                     //string[] a_dbNamestring = dbCstring.Split(';');
                     //string[] a_dbNameS = a_dbNamestring[3].ToString().Split('=');
@@ -116,11 +116,11 @@ namespace OS.Web.manage.settings
                     Response.Close();
                     break;
                 case "lbtnDelete":
-                    ChkAdminLevel("plugin_baseback", YLEnums.ActionEnum.Delete.ToString()); //检查权限
+                    ChkAdminLevel("plugin_baseback", OSEnums.ActionEnum.Delete.ToString()); //检查权限
                     if (File.Exists(backpath))
                     {
                         File.Delete(backpath);
-                        AddAdminLog(YLEnums.ActionEnum.Delete.ToString(), "删除数据备份文件：" + filename); //记录日志
+                        AddAdminLog(OSEnums.ActionEnum.Delete.ToString(), "删除数据备份文件：" + filename); //记录日志
                     }
                     Response.Redirect("databack.aspx");
                     break;
@@ -130,7 +130,7 @@ namespace OS.Web.manage.settings
         //批量删除
         protected void btnDelete_Click(object sender, EventArgs e)
         {
-            ChkAdminLevel("plugin_baseback", YLEnums.ActionEnum.Delete.ToString()); //检查权限
+            ChkAdminLevel("plugin_baseback", OSEnums.ActionEnum.Delete.ToString()); //检查权限
             int sucCount = 0;
             int errorCount = 0;
             for (int i = 0; i < rptList.Items.Count; i++)
@@ -151,7 +151,7 @@ namespace OS.Web.manage.settings
                     }
                 }
             }
-            AddAdminLog(YLEnums.ActionEnum.Delete.ToString(), "删除数据库备份文件" + sucCount + "条，失败" + errorCount + "条"); //记录日志
+            AddAdminLog(OSEnums.ActionEnum.Delete.ToString(), "删除数据库备份文件" + sucCount + "条，失败" + errorCount + "条"); //记录日志
             Response.Redirect("databack.aspx");
 
         }

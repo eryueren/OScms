@@ -20,13 +20,13 @@ namespace OS.Web.manage.advert
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            this.aid = YLRequest.GetQueryInt("aid");
-            this.keywords = YLRequest.GetQueryString("keywords");
+            this.aid = OSRequest.GetQueryInt("aid");
+            this.keywords = OSRequest.GetQueryString("keywords");
 
             this.pageSize = GetPageSize(10); //每页数量
             if (!Page.IsPostBack)
             {
-                ChkAdminLevel("advert", YLEnums.ActionEnum.View.ToString()); //检查权限
+                ChkAdminLevel("advert", OSEnums.ActionEnum.View.ToString()); //检查权限
                 TreeBind(); //绑定广告位
                 RptBind("id>0" + CombSqlTxt(this.aid, this.keywords), "is_lock asc,sort_id asc,add_time desc");
             }
@@ -50,7 +50,7 @@ namespace OS.Web.manage.advert
         #region 数据绑定=================================
         private void RptBind(string _strWhere, string _orderby)
         {
-            this.page = YLRequest.GetQueryInt("page", 1);
+            this.page = OSRequest.GetQueryInt("page", 1);
             this.txtKeywords.Text = this.keywords;
             if (this.aid > 0)
             {
@@ -149,7 +149,7 @@ namespace OS.Web.manage.advert
         //保存排序
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            ChkAdminLevel("plugin_advert_bar", YLEnums.ActionEnum.Edit.ToString()); //检查权限
+            ChkAdminLevel("plugin_advert_bar", OSEnums.ActionEnum.Edit.ToString()); //检查权限
             BLL.plugins.advert_banner bll = new BLL.plugins.advert_banner();
             for (int i = 0; i < rptList.Items.Count; i++)
             {
@@ -161,14 +161,14 @@ namespace OS.Web.manage.advert
                 }
                 bll.UpdateField(id, "sort_id=" + sortId.ToString());
             }
-            AddAdminLog(YLEnums.ActionEnum.Edit.ToString(), "修改广告内容排序"); //记录日志
+            AddAdminLog(OSEnums.ActionEnum.Edit.ToString(), "修改广告内容排序"); //记录日志
             Response.Redirect(Utils.CombUrlTxt("bar_list.aspx", "aid={0}&keywords={1}", this.aid.ToString(), this.keywords));
         }
 
         //批量删除
         protected void btnDelete_Click(object sender, EventArgs e)
         {
-            ChkAdminLevel("advert", YLEnums.ActionEnum.Delete.ToString()); //检查权限
+            ChkAdminLevel("advert", OSEnums.ActionEnum.Delete.ToString()); //检查权限
             int sucCount = 0;
             int errorCount = 0;
             BLL.plugins.advert_banner bll = new BLL.plugins.advert_banner();
@@ -188,7 +188,7 @@ namespace OS.Web.manage.advert
                     }
                 }
             }
-            AddAdminLog(YLEnums.ActionEnum.Delete.ToString(), "删除广告内容成功" + sucCount + "条，失败" + errorCount + "条"); //记录日志
+            AddAdminLog(OSEnums.ActionEnum.Delete.ToString(), "删除广告内容成功" + sucCount + "条，失败" + errorCount + "条"); //记录日志
             Response.Redirect(Utils.CombUrlTxt("bar_list.aspx", "aid={0}&keywords={1}", this.aid.ToString(), this.keywords));
         }
 

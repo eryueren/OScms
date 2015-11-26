@@ -14,16 +14,16 @@ namespace OS.Web.admin.article
         protected string channel_name = string.Empty; //频道名称
          BLL.contents.article_category bll = new BLL.contents.article_category();
          Model.contents.article_category model = new Model.contents.article_category();
-         protected int channel_id = YLRequest.GetQueryInt("id");
-         protected string _action = YLRequest.GetString("action");
+         protected int channel_id = OSRequest.GetQueryInt("id");
+         protected string _action = OSRequest.GetString("action");
          protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
-                ChkAdminLevel("category", YLEnums.ActionEnum.View.ToString()); //检查权限
+                ChkAdminLevel("category", OSEnums.ActionEnum.View.ToString()); //检查权限
                 if (channel_id !=0 && _action == "del")
                 {
-                    ChkAdminLevel("category", YLEnums.ActionEnum.Delete.ToString()); //检查权限
+                    ChkAdminLevel("category", OSEnums.ActionEnum.Delete.ToString()); //检查权限
                     bll.Delete(channel_id);
                 }
                 this.ColumnListBind();
@@ -43,11 +43,11 @@ namespace OS.Web.admin.article
             {
                 model = bll.GetModel(Id);
                 //允许添加子类
-                string is_zilei = model.is_add_category == 1 ? " <a style=\"padding-left:30px;\" href=\"category_edit.aspx?action=" + YLEnums.ActionEnum.Add + "&channel_id=" + model.channel_id + "&id=" + Id + "\"/>添加子类</a>" : "";
+                string is_zilei = model.is_add_category == 1 ? " <a style=\"padding-left:30px;\" href=\"category_edit.aspx?action=" + OSEnums.ActionEnum.Add + "&channel_id=" + model.channel_id + "&id=" + Id + "\"/>添加子类</a>" : "";
                 //默认最多只能添加三级("model.class_layer == 3"深度)
                 string is_zilei_there = model.class_layer == 4 ? "" : is_zilei;
                 string style = is_zilei_there == "" ? "style=\"padding-left:20px;\"" : "style=\"padding-left:10px;\"";
-                return is_zilei_there + "<a " + style + " href=\"category_edit.aspx?action=" + YLEnums.ActionEnum.Edit + "&channel_id=" + model.channel_id + "&id=" + Id + "\"/>编辑</a>   <a style=\"padding-left:10px;\"  href=\"javascript:del(" + Id + ")\" class=\"del\">删除</a>   <a  style=\"padding-left:10px;\" href=\"javascript:categoey(" + Id + ")\" >移动</a>";
+                return is_zilei_there + "<a " + style + " href=\"category_edit.aspx?action=" + OSEnums.ActionEnum.Edit + "&channel_id=" + model.channel_id + "&id=" + Id + "\"/>编辑</a>   <a style=\"padding-left:10px;\"  href=\"javascript:del(" + Id + ")\" class=\"del\">删除</a>   <a  style=\"padding-left:10px;\" href=\"javascript:categoey(" + Id + ")\" >移动</a>";
             }
             return "";
         }

@@ -21,8 +21,8 @@ namespace OS.Web.admin.article
 
             BLL.contents.article_category bll = new BLL.contents.article_category();
             Model.contents.article_category model = new Model.contents.article_category();
-            int id = YLRequest.GetQueryInt("id", -2);
-            int type = YLRequest.GetQueryInt("type", -2);   //0上 ；1下
+            int id = OSRequest.GetQueryInt("id", -2);
+            int type = OSRequest.GetQueryInt("type", -2);   //0上 ；1下
             model = bll.GetModel(id);
             DataTable dt_sx = bll.GetList(0, "parent_id=" + model.parent_id, "sort_id asc,id desc").Tables[0];
             if (dt_sx.Rows != null && dt_sx.Rows.Count > 0)

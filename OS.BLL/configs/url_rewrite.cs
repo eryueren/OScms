@@ -101,11 +101,11 @@ namespace OS.BLL.configs
         /// </summary>
         public Hashtable GetList()
         {
-            Hashtable ht = CacheHelper.Get<Hashtable>(YLKeys.CACHE_SITE_URLS);
+            Hashtable ht = CacheHelper.Get<Hashtable>(OSKeys.CACHE_SITE_URLS);
             if (ht == null)
             {
-                CacheHelper.Insert(YLKeys.CACHE_SITE_URLS, dal.GetList(), Utils.GetXmlMapPath(YLKeys.FILE_URL_XML_CONFING));
-                ht = CacheHelper.Get<Hashtable>(YLKeys.CACHE_SITE_URLS);
+                CacheHelper.Insert(OSKeys.CACHE_SITE_URLS, dal.GetList(), Utils.GetXmlMapPath(OSKeys.FILE_URL_XML_CONFING));
+                ht = CacheHelper.Get<Hashtable>(OSKeys.CACHE_SITE_URLS);
             }
             return ht;
         }
@@ -115,11 +115,11 @@ namespace OS.BLL.configs
         /// </summary>
         public List<Model.configs.url_rewrite> GetListAll()
         {
-            List<Model.configs.url_rewrite> ls = CacheHelper.Get<List<Model.configs.url_rewrite>>(YLKeys.CACHE_SITE_URLS_LIST);
+            List<Model.configs.url_rewrite> ls = CacheHelper.Get<List<Model.configs.url_rewrite>>(OSKeys.CACHE_SITE_URLS_LIST);
             if (ls == null)
             {
-                CacheHelper.Insert(YLKeys.CACHE_SITE_URLS_LIST, dal.GetList(""), Utils.GetXmlMapPath(YLKeys.FILE_URL_XML_CONFING));
-                ls = CacheHelper.Get<List<Model.configs.url_rewrite>>(YLKeys.CACHE_SITE_URLS_LIST);
+                CacheHelper.Insert(OSKeys.CACHE_SITE_URLS_LIST, dal.GetList(""), Utils.GetXmlMapPath(OSKeys.FILE_URL_XML_CONFING));
+                ls = CacheHelper.Get<List<Model.configs.url_rewrite>>(OSKeys.CACHE_SITE_URLS_LIST);
             }
             return ls;
         }

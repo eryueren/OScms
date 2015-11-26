@@ -278,16 +278,6 @@ namespace OS.Model.contents
             set { _attach = value; }
             get { return _attach; }
         }
-
-        private List<users.user_group_price> _group_price;
-        /// <summary>
-        /// 会员组价格
-        /// </summary>
-        public List<users.user_group_price> group_price
-        {
-            set { _group_price = value; }
-            get { return _group_price; }
-        }
     }
     #endregion Model
 }

@@ -13,10 +13,10 @@ namespace OS.Web.admin.article
 {
     public partial class article_edit : Web.UI.ManagePage
     {
-        private string action = YLEnums.ActionEnum.Add.ToString(); //操作类型
+        private string action = OSEnums.ActionEnum.Add.ToString(); //操作类型
         protected string category_name = string.Empty; //频道名称
-        protected int category_id = YLRequest.GetQueryInt("category_id");
-        protected int id = YLRequest.GetQueryInt("id");
+        protected int category_id = OSRequest.GetQueryInt("category_id");
+        protected int id = OSRequest.GetQueryInt("id");
         //页面初始化事件
         protected void Page_Init(object sernder, EventArgs e)
         {
@@ -26,16 +26,16 @@ namespace OS.Web.admin.article
         //页面加载事件
         protected void Page_Load(object sender, EventArgs e)
         {
-            string _action = YLRequest.GetQueryString("action");
+            string _action = OSRequest.GetQueryString("action");
        
             if (this.category_id == 0)
             {
                 PageErrorMsg("栏目参数不正确");
             }
             this.category_name = new BLL.contents.article_category().GetChannelName(this.category_id); //取得频道名称
-            if (!string.IsNullOrEmpty(_action) && _action == YLEnums.ActionEnum.Edit.ToString())
+            if (!string.IsNullOrEmpty(_action) && _action == OSEnums.ActionEnum.Edit.ToString())
             {
-                this.action = YLEnums.ActionEnum.Edit.ToString();//修改类型
+                this.action = OSEnums.ActionEnum.Edit.ToString();//修改类型
                 if (this.id == 0)
                 {
                     PageErrorMsg("传输参数不正确");
@@ -47,9 +47,9 @@ namespace OS.Web.admin.article
             }
             if (!Page.IsPostBack)
             {
-                ChkAdminLevel(category_name, YLEnums.ActionEnum.View.ToString()); //检查权限
+                ChkAdminLevel(category_name, OSEnums.ActionEnum.View.ToString()); //检查权限
                 ShowSysField(this.category_id); //显示相应的默认控件
-                if (action == YLEnums.ActionEnum.Edit.ToString()) //修改
+                if (action == OSEnums.ActionEnum.Edit.ToString()) //修改
                 {
                     ShowInfo(this.id);
                 }
@@ -619,7 +619,7 @@ namespace OS.Web.admin.article
             {
                 //开始生成缩略图咯
          
-                AddAdminLog(YLEnums.ActionEnum.Add.ToString(), "添加" + this.category_name + "频道内容:" + model.title); //记录日志
+                AddAdminLog(OSEnums.ActionEnum.Add.ToString(), "添加" + this.category_name + "频道内容:" + model.title); //记录日志
                 result = true;
             }
             return result;
@@ -747,7 +747,7 @@ namespace OS.Web.admin.article
             if (bll.Update(model))
             {
               
-                AddAdminLog(YLEnums.ActionEnum.Edit.ToString(), "修改" + this.category_name + "频道内容:" + model.title); //记录日志
+                AddAdminLog(OSEnums.ActionEnum.Edit.ToString(), "修改" + this.category_name + "频道内容:" + model.title); //记录日志
                 result = true;
             }
             return result;
@@ -757,9 +757,9 @@ namespace OS.Web.admin.article
         //保存
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            if (action == YLEnums.ActionEnum.Edit.ToString()) //修改
+            if (action == OSEnums.ActionEnum.Edit.ToString()) //修改
             {
-                ChkAdminLevel(category_name, YLEnums.ActionEnum.Edit.ToString()); //检查权限
+                ChkAdminLevel(category_name, OSEnums.ActionEnum.Edit.ToString()); //检查权限
                 if (!DoEdit(this.id))
                 {
                     PageErrorMsg("保存过程中发生错误啦");
@@ -769,13 +769,13 @@ namespace OS.Web.admin.article
             }
             else //添加
             {
-                ChkAdminLevel(category_name, YLEnums.ActionEnum.Add.ToString()); //检查权限
+                ChkAdminLevel(category_name, OSEnums.ActionEnum.Add.ToString()); //检查权限
                 if (!DoAdd())
                 {
                     PageErrorMsg("保存过程中发生错误啦");
                 }
 
-                PageSuccessMsg("添加信息成功！", "article_edit.aspx?action=" + YLEnums.ActionEnum.Add + "&category_id=" + this.category_id, "article_list.aspx?category_id=" + this.category_id);
+                PageSuccessMsg("添加信息成功！", "article_edit.aspx?action=" + OSEnums.ActionEnum.Add + "&category_id=" + this.category_id, "article_list.aspx?category_id=" + this.category_id);
               
             }
         }

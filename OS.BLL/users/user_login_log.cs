@@ -35,7 +35,7 @@ namespace OS.BLL.users
             model.user_id = user_id;
             model.user_name = user_name;
             model.remark = remark;
-            model.login_ip = YLRequest.GetIP();
+            model.login_ip = OSRequest.GetIP();
             model.login_time = DateTime.Now;
             return dal.Add(model);
         }

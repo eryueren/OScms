@@ -9,17 +9,17 @@ namespace OS.Web.admin.channel
 {
     public partial class attribute_field_edit : Web.UI.ManagePage
     {
-        private string action = YLEnums.ActionEnum.Add.ToString(); //操作类型
+        private string action = OSEnums.ActionEnum.Add.ToString(); //操作类型
         private int id = 0;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            string _action = YLRequest.GetQueryString("action");
+            string _action = OSRequest.GetQueryString("action");
 
-            if (!string.IsNullOrEmpty(_action) && _action == YLEnums.ActionEnum.Edit.ToString())
+            if (!string.IsNullOrEmpty(_action) && _action == OSEnums.ActionEnum.Edit.ToString())
             {
-                this.action = YLEnums.ActionEnum.Edit.ToString();//修改类型
-                this.id = YLRequest.GetQueryInt("id");
+                this.action = OSEnums.ActionEnum.Edit.ToString();//修改类型
+                this.id = OSRequest.GetQueryInt("id");
                 if (this.id == 0)
                 {
                     JscriptMsg("传输参数不正确！", "back", "Error");
@@ -33,10 +33,10 @@ namespace OS.Web.admin.channel
             }
             if (!Page.IsPostBack)
             {
-                ChkAdminLevel("attribute_field", YLEnums.ActionEnum.View.ToString()); //检查权限
+                ChkAdminLevel("attribute_field", OSEnums.ActionEnum.View.ToString()); //检查权限
                 dlIsPassWord.Visible = dlIsHtml.Visible = dlEditorType.Visible = dlDataType.Visible
                     = dlDataLength.Visible = dlDataPlace.Visible = dlItemOption.Visible = false; //隐藏相应控件
-                if (action == YLEnums.ActionEnum.Edit.ToString()) //修改
+                if (action == OSEnums.ActionEnum.Edit.ToString()) //修改
                 {
                     ShowInfo(this.id);
                 }
@@ -180,7 +180,7 @@ namespace OS.Web.admin.channel
 
             if (bll.Add(model) > 0)
             {
-                AddAdminLog(YLEnums.ActionEnum.Add.ToString(), "添加扩展字段:" + model.title); //记录日志
+                AddAdminLog(OSEnums.ActionEnum.Add.ToString(), "添加扩展字段:" + model.title); //记录日志
                 result = true;
             }
             return result;
@@ -236,7 +236,7 @@ namespace OS.Web.admin.channel
 
             if (bll.Update(model))
             {
-                AddAdminLog(YLEnums.ActionEnum.Add.ToString(), "修改扩展字段:" + model.title); //记录日志
+                AddAdminLog(OSEnums.ActionEnum.Add.ToString(), "修改扩展字段:" + model.title); //记录日志
                 result = true;
             }
 
@@ -253,9 +253,9 @@ namespace OS.Web.admin.channel
         //保存
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            if (action == YLEnums.ActionEnum.Edit.ToString()) //修改
+            if (action == OSEnums.ActionEnum.Edit.ToString()) //修改
             {
-                ChkAdminLevel("attribute_field", YLEnums.ActionEnum.Edit.ToString()); //检查权限
+                ChkAdminLevel("attribute_field", OSEnums.ActionEnum.Edit.ToString()); //检查权限
                 if (!DoEdit(this.id))
                 {
                    JscriptMsg("保存过程中发生错误！", "", "Error");
@@ -267,7 +267,7 @@ namespace OS.Web.admin.channel
             }
             else //添加
             {
-                ChkAdminLevel("attribute_field", YLEnums.ActionEnum.Add.ToString()); //检查权限
+                ChkAdminLevel("attribute_field", OSEnums.ActionEnum.Add.ToString()); //检查权限
                 if (!DoAdd())
                 {
                     JscriptMsg("保存过程中发生错误！", "", "Error");

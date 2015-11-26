@@ -1,0 +1,96 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="OScms.Web.Site" %>
+
+<%@ Import Namespace="OS.Web.UI" %>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title><%= BasePage.config.webname %></title>
+    <%= BasePage.MetaInfo( BasePage.config.webkeyword,BasePage.config.webdescription)  %>
+    <%--<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />--%>
+    <link href="css/css.css" rel="stylesheet" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server" name="formsuan">
+        <table width="1002" border="0" align="center" cellpadding="0" cellspacing="0">
+            <tr>
+                <td bgcolor="#F8F7F2">
+                    <img src="images/logo.jpg" width="580" height="85" /></td>
+            </tr>
+            <tr>
+                <td>
+                    <ul id="nav">
+                        <%--获取菜单项--%>
+                        <%= BasePage.GetMenuLst() %>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+        <% if (id == 160 || id == 161 || id == 162 || id == 136) { %>
+        <table width="235" border="0" align="center" cellpadding="0" cellspacing="0">
+            <tr>
+                <td colspan="2">
+                    <img src="images/banner02.jpg" width="1002" height="122" /></td>
+            </tr>
+            <tr>
+                <td colspan="2" height="5"></td>
+            </tr>
+            <tr>
+                <td width="245" valign="top" bgcolor="#F4F3F3">
+                    <table width="235" border="0" align="center" cellpadding="0" cellspacing="0">
+            </tr>
+            <tr>
+                <td width="233" height="29" class="title03">&nbsp;&nbsp;&nbsp;&nbsp;<strong>新闻中心 </strong></td>
+            </tr>
+            <tr>
+                <td>
+                    <ul class="listTytp04">
+                        <%--获取菜单项--%>
+                        <%= BasePage.GetMenuAndChildLstByFid(136) %>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+        <% } %>
+        <% else { %>
+        <table width="235" border="0" align="center" cellpadding="0" cellspacing="0">
+            <tr>
+                <td colspan="2">
+                    <img src="images/banner02.jpg" width="1002" height="122" /></td>
+            </tr>
+            <tr>
+                <td colspan="2" height="5"></td>
+            </tr>
+            <tr>
+                <td width="245" valign="top" bgcolor="#F4F3F3">
+                    <table width="235" border="0" align="center" cellpadding="0" cellspacing="0">
+            </tr>
+            <tr>
+                <td width="233" height="29" class="title03">&nbsp;&nbsp;&nbsp;&nbsp;<strong>业务领域 </strong></td>
+            </tr>
+            <tr>
+                <td>
+                    <ul class="listTytp04">
+                        <%--获取菜单项--%>
+                        <%= BasePage.GetMenuAndChildLstByFid(135) %>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+        <% } %>
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        <table width="1002" border="0" align="center" cellpadding="0" cellspacing="0" id="bottom">
+            <tr>
+                <td height="49" align="right" bgcolor="#393939"><%= BasePage.config.webcopyright %><a href="http://www.sc98.cn/" target="_blank">网站建设</a>：<a href="http://www.sc798.com/" target="_blank">收获成功</a>&nbsp;&nbsp;</td>
+            </tr>
+        </table>
+
+    </form>
+</body>
+</html>

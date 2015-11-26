@@ -19,13 +19,13 @@ namespace OS.Web.admin.channel
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            this.control_type = YLRequest.GetQueryString("control_type");
-            this.keywords = YLRequest.GetQueryString("keywords");
+            this.control_type = OSRequest.GetQueryString("control_type");
+            this.keywords = OSRequest.GetQueryString("keywords");
 
             this.pageSize = GetPageSize(10); //每页数量
             if (!Page.IsPostBack)
             {
-                ChkAdminLevel("attribute_field", YLEnums.ActionEnum.View.ToString()); //检查权限
+                ChkAdminLevel("attribute_field", OSEnums.ActionEnum.View.ToString()); //检查权限
                 RptBind("id>0" + CombSqlTxt(this.control_type, this.keywords), "is_sys desc,sort_id asc,id desc");
             }
         }
@@ -33,7 +33,7 @@ namespace OS.Web.admin.channel
         #region 数据绑定=================================
         private void RptBind(string _strWhere, string _orderby)
         {
-            this.page = YLRequest.GetQueryInt("page", 1);
+            this.page = OSRequest.GetQueryInt("page", 1);
             this.ddlControlType.SelectedValue = this.control_type;
             this.txtKeywords.Text = this.keywords;
             BLL.contents.article_attribute_field bll = new BLL.contents.article_attribute_field();
@@ -147,7 +147,7 @@ namespace OS.Web.admin.channel
         //保存排序
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            ChkAdminLevel("attribute_field", YLEnums.ActionEnum.Edit.ToString()); //检查权限
+            ChkAdminLevel("attribute_field", OSEnums.ActionEnum.Edit.ToString()); //检查权限
             BLL.contents.article_attribute_field bll = new BLL.contents.article_attribute_field();
             for (int i = 0; i < rptList.Items.Count; i++)
             {
@@ -159,14 +159,14 @@ namespace OS.Web.admin.channel
                 }
                 bll.UpdateField(id, "sort_id=" + sortId.ToString());
             }
-            AddAdminLog(YLEnums.ActionEnum.Edit.ToString(), "保存扩展字段排序"); //记录日志
+            AddAdminLog(OSEnums.ActionEnum.Edit.ToString(), "保存扩展字段排序"); //记录日志
             Response.Redirect(Utils.CombUrlTxt("attribute_field_list.aspx", "control_type={0}&keywords={1}", this.control_type, this.keywords));
         }
 
         //批量删除
         protected void btnDelete_Click(object sender, EventArgs e)
         {
-            ChkAdminLevel("attribute_field", YLEnums.ActionEnum.Delete.ToString()); //检查权限
+            ChkAdminLevel("attribute_field", OSEnums.ActionEnum.Delete.ToString()); //检查权限
             int sucCount = 0; //成功数量
             int errorCount = 0; //失败数量
             BLL.contents.article_attribute_field bll = new BLL.contents.article_attribute_field();
@@ -186,7 +186,7 @@ namespace OS.Web.admin.channel
                     }
                 }
             }
-            AddAdminLog(YLEnums.ActionEnum.Delete.ToString(), "删除扩展字段成功" + sucCount + "条，失败" + errorCount + "条"); //记录日志
+            AddAdminLog(OSEnums.ActionEnum.Delete.ToString(), "删除扩展字段成功" + sucCount + "条，失败" + errorCount + "条"); //记录日志
             Response.Redirect(Utils.CombUrlTxt("attribute_field_list.aspx", "control_type={0}&keywords={1}", this.control_type, this.keywords));
         }
 

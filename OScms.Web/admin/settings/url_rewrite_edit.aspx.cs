@@ -11,16 +11,16 @@ namespace OS.Web.admin.settings
 {
     public partial class url_rewrite_edit : Web.UI.ManagePage
     {
-        private string action = YLEnums.ActionEnum.Add.ToString(); //操作类型
+        private string action = OSEnums.ActionEnum.Add.ToString(); //操作类型
         private string urlName = string.Empty;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            string _action = YLRequest.GetQueryString("action");
-            if (!string.IsNullOrEmpty(_action) && _action == YLEnums.ActionEnum.Edit.ToString())
+            string _action = OSRequest.GetQueryString("action");
+            if (!string.IsNullOrEmpty(_action) && _action == OSEnums.ActionEnum.Edit.ToString())
             {
-                this.action = YLEnums.ActionEnum.Edit.ToString();//修改类型
-                this.urlName = YLRequest.GetQueryString("name");
+                this.action = OSEnums.ActionEnum.Edit.ToString();//修改类型
+                this.urlName = OSRequest.GetQueryString("name");
                 if (string.IsNullOrEmpty(this.urlName))
                 {
                     PageErrorMsg("传输参数不正确");
@@ -28,9 +28,9 @@ namespace OS.Web.admin.settings
             }
             if (!Page.IsPostBack)
             {
-                ChkAdminLevel("site_url_rewrite", YLEnums.ActionEnum.View.ToString()); //检查权限
+                ChkAdminLevel("site_url_rewrite", OSEnums.ActionEnum.View.ToString()); //检查权限
              
-                if (action == YLEnums.ActionEnum.Edit.ToString()) //修改
+                if (action == OSEnums.ActionEnum.Edit.ToString()) //修改
                 {
                     ShowInfo(urlName);
                 }
@@ -84,7 +84,7 @@ namespace OS.Web.admin.settings
 
             if (bll.Add(model))
             {
-                AddAdminLog(YLEnums.ActionEnum.Add.ToString(), "添加URL配置信息:" + model.name); //记录日志
+                AddAdminLog(OSEnums.ActionEnum.Add.ToString(), "添加URL配置信息:" + model.name); //记录日志
                 return true;
             }
             return false;
@@ -114,7 +114,7 @@ namespace OS.Web.admin.settings
 
             if (bll.Edit(model))
             {
-                AddAdminLog(YLEnums.ActionEnum.Edit.ToString(), "修改URL配置信息:" + model.name); //记录日志
+                AddAdminLog(OSEnums.ActionEnum.Edit.ToString(), "修改URL配置信息:" + model.name); //记录日志
                 return true;
             }
             return false;
@@ -124,9 +124,9 @@ namespace OS.Web.admin.settings
         //保存
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            if (action == YLEnums.ActionEnum.Edit.ToString()) //修改
+            if (action == OSEnums.ActionEnum.Edit.ToString()) //修改
             {
-                ChkAdminLevel("site_url_rewrite", YLEnums.ActionEnum.Edit.ToString()); //检查权限
+                ChkAdminLevel("site_url_rewrite", OSEnums.ActionEnum.Edit.ToString()); //检查权限
                 if (!DoEdit(this.urlName))
                 {
                     PageErrorMsg("保存过程中发生错误啦");
@@ -136,7 +136,7 @@ namespace OS.Web.admin.settings
             }
             else //添加
             {
-                ChkAdminLevel("site_url_rewrite", YLEnums.ActionEnum.Add.ToString()); //检查权限
+                ChkAdminLevel("site_url_rewrite", OSEnums.ActionEnum.Add.ToString()); //检查权限
                 if (!DoAdd())
                 {
                     PageErrorMsg("保存过程中发生错误啦");

@@ -2,3 +2,15 @@ E:\code2015\O_OScms\code\OScms\OS.Common\bin\Debug\OS.Common.dll
 E:\code2015\O_OScms\code\OScms\OS.Common\bin\Debug\OS.Common.pdb
 E:\code2015\O_OScms\code\OScms\OS.Common\obj\Debug\OS.Common.dll
 E:\code2015\O_OScms\code\OScms\OS.Common\obj\Debug\OS.Common.pdb
+E:\code2015\L_律师官网\code\OS.Common\bin\Debug\OS.Common.dll
+E:\code2015\L_律师官网\code\OS.Common\bin\Debug\OS.Common.pdb
+E:\code2015\L_律师官网\code\OS.Common\obj\Debug\OS.Common.dll
+E:\code2015\L_律师官网\code\OS.Common\obj\Debug\OS.Common.pdb
+E:\code2015\O_OScms\asp.net\OScms\OS.Common\bin\Debug\OS.Common.dll
+E:\code2015\O_OScms\asp.net\OScms\OS.Common\bin\Debug\OS.Common.pdb
+E:\code2015\O_OScms\asp.net\OScms\OS.Common\obj\Debug\OS.Common.dll
+E:\code2015\O_OScms\asp.net\OScms\OS.Common\obj\Debug\OS.Common.pdb
+E:\code2015\R_任务发布系统\code\OScms\OS.Common\bin\Debug\OS.Common.dll
+E:\code2015\R_任务发布系统\code\OScms\OS.Common\bin\Debug\OS.Common.pdb
+E:\code2015\R_任务发布系统\code\OScms\OS.Common\obj\Debug\OS.Common.dll
+E:\code2015\R_任务发布系统\code\OScms\OS.Common\obj\Debug\OS.Common.pdb

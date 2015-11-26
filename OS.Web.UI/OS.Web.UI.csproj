@@ -48,24 +48,12 @@
     <Compile Include="BasePage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Function.cs" />
     <Compile Include="HtmlSafe.cs" />
-    <Compile Include="HttpModule.cs" />
-    <Compile Include="Label\article.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="ManagePage.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Page\article_list.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Page\index.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UpLoad.cs" />
-    <Compile Include="VelocityHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OS.BLL\OS.BLL.csproj">

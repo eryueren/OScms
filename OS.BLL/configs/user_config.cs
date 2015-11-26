@@ -17,12 +17,12 @@ namespace OS.BLL.configs
         /// </summary>
         public Model.configs.userconfig loadConfig()
         {
-            Model.configs.userconfig model = CacheHelper.Get<Model.configs.userconfig>(YLKeys.CACHE_USER_CONFIG);
+            Model.configs.userconfig model = CacheHelper.Get<Model.configs.userconfig>(OSKeys.CACHE_USER_CONFIG);
             if (model == null)
             {
-                CacheHelper.Insert(YLKeys.CACHE_USER_CONFIG, dal.loadConfig(Utils.GetXmlMapPath(YLKeys.FILE_USER_XML_CONFING)),
-                    Utils.GetXmlMapPath(YLKeys.FILE_USER_XML_CONFING));
-                model = CacheHelper.Get<Model.configs.userconfig>(YLKeys.CACHE_USER_CONFIG);
+                CacheHelper.Insert(OSKeys.CACHE_USER_CONFIG, dal.loadConfig(Utils.GetXmlMapPath(OSKeys.FILE_USER_XML_CONFING)),
+                    Utils.GetXmlMapPath(OSKeys.FILE_USER_XML_CONFING));
+                model = CacheHelper.Get<Model.configs.userconfig>(OSKeys.CACHE_USER_CONFIG);
             }
             return model;
         }
@@ -32,7 +32,7 @@ namespace OS.BLL.configs
         /// </summary>
         public Model.configs.userconfig saveConifg(Model.configs.userconfig model)
         {
-            return dal.saveConifg(model, Utils.GetXmlMapPath(YLKeys.FILE_USER_XML_CONFING));
+            return dal.saveConifg(model, Utils.GetXmlMapPath(OSKeys.FILE_USER_XML_CONFING));
         }
 
     }

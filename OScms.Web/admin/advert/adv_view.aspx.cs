@@ -16,7 +16,7 @@ namespace OS.Web.manage.advert
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            this.id = YLRequest.GetQueryInt("id", 0);
+            this.id = OSRequest.GetQueryInt("id", 0);
             if (this.id < 1)
             {
                 PageErrorMsg("传输参数不正确");

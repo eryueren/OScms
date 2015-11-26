@@ -269,26 +269,6 @@ namespace  OS.DAL.contents {
 				}
 			}
 
-			//用户组价格
-			if (model.group_price != null) {
-				StringBuilder strSql5;
-				foreach (Model.users.user_group_price models in model.group_price) {
-					strSql5 = new StringBuilder();
-					strSql5.Append("insert into " + databaseprefix + "user_group_price(");
-					strSql5.Append("article_id,group_id,price)");
-					strSql5.Append(" values (");
-					strSql5.Append("@article_id,@group_id,@price)");
-					SqlParameter[] parameters5 = {
-						    new SqlParameter("@article_id", SqlDbType.Int,4),
-					        new SqlParameter("@group_id", SqlDbType.Int,4),
-					        new SqlParameter("@price", SqlDbType.Decimal,5)};
-					parameters5[0].Direction = ParameterDirection.InputOutput;
-					parameters5[1].Value = models.group_id;
-					parameters5[2].Value = models.price;
-					cmd = new CommandInfo(strSql5.ToString(), parameters5);
-					sqllist.Add(cmd);
-				}
-			}
 
 			DbHelperSQL.ExecuteSqlTranWithIndentity(sqllist);
 			return (int)parameters[25].Value;
@@ -525,44 +505,6 @@ namespace  OS.DAL.contents {
 						}
 
 						//添加/修改会员组价格
-						if (model.group_price != null) {
-							StringBuilder strSql5;
-							foreach (Model.users.user_group_price modelt in model.group_price) {
-								strSql5 = new StringBuilder();
-								if (modelt.id > 0) {
-									strSql5.Append("update " + databaseprefix + "user_group_price set ");
-									strSql5.Append("article_id=@article_id,");
-									strSql5.Append("group_id=@group_id,");
-									strSql5.Append("price=@price");
-									strSql5.Append(" where id=@id");
-									SqlParameter[] parameters5 = {
-					                        new SqlParameter("@article_id", SqlDbType.Int,4),
-					                        new SqlParameter("@group_id", SqlDbType.Int,4),
-					                        new SqlParameter("@price", SqlDbType.Decimal,5),
-					                        new SqlParameter("@id", SqlDbType.Int,4)};
-									parameters5[0].Value = modelt.article_id;
-									parameters5[1].Value = modelt.group_id;
-									parameters5[2].Value = modelt.price;
-									parameters5[3].Value = modelt.id;
-									DbHelperSQL.ExecuteSql(conn, trans, strSql5.ToString(), parameters5);
-								}
-								else {
-									strSql5.Append("insert into " + databaseprefix + "user_group_price(");
-									strSql5.Append("article_id,group_id,price)");
-									strSql5.Append(" values (");
-									strSql5.Append("@article_id,@group_id,@price)");
-									SqlParameter[] parameters5 = {
-					                        new SqlParameter("@article_id", SqlDbType.Int,4),
-					                        new SqlParameter("@group_id", SqlDbType.Int,4),
-					                        new SqlParameter("@price", SqlDbType.Decimal,5)};
-									parameters5[0].Value = modelt.article_id;
-									parameters5[1].Value = modelt.group_id;
-									parameters5[2].Value = modelt.price;
-									DbHelperSQL.ExecuteSql(conn, trans, strSql5.ToString(), parameters5);
-								}
-							}
-						}
-
 						trans.Commit();
 					}
 					catch {
@@ -612,16 +554,6 @@ namespace  OS.DAL.contents {
                     new SqlParameter("@article_id", SqlDbType.Int,4)};
 			parameters3[0].Value = id;
 			cmd = new CommandInfo(strSql3.ToString(), parameters3);
-			sqllist.Add(cmd);
-
-			//删除会员组价格
-			StringBuilder strSql4 = new StringBuilder();
-			strSql4.Append("delete from " + databaseprefix + "user_group_price ");
-			strSql4.Append(" where article_id=@article_id ");
-			SqlParameter[] parameters4 = {
-                    new SqlParameter("@article_id", SqlDbType.Int,4)};
-			parameters4[0].Value = id;
-			cmd = new CommandInfo(strSql4.ToString(), parameters4);
 			sqllist.Add(cmd);
 
 			//删除评论
@@ -765,9 +697,6 @@ namespace  OS.DAL.contents {
 				model.albums = new article_albums(databaseprefix).GetList(id);
 				//附件信息
 				model.attach = new article_attach(databaseprefix).GetList(id);
-				//用户组价格
-				model.group_price = GetGroupPrice(id);
-
 				return model;
 			}
 			else {
@@ -960,39 +889,6 @@ namespace  OS.DAL.contents {
 		#endregion
 
 		#region 扩展方法=============================================
-		/// <summary>
-		/// 获得会员组价格
-		/// </summary>
-		private List<Model.users.user_group_price> GetGroupPrice(int article_id) {
-			List<Model.users.user_group_price> ls = new List<Model.users.user_group_price>();
-
-			StringBuilder strSql = new StringBuilder();
-			strSql.Append("select id,article_id,group_id,price from " + databaseprefix + "user_group_price ");
-			strSql.Append(" where article_id=" + article_id);
-			DataTable dt = DbHelperSQL.Query(strSql.ToString()).Tables[0];
-
-			int rowsCount = dt.Rows.Count;
-			if (rowsCount > 0) {
-				Model.users.user_group_price model;
-				for (int n = 0; n < rowsCount; n++) {
-					model = new Model.users.user_group_price();
-					if (dt.Rows[n]["id"] != null && dt.Rows[n]["id"].ToString() != "") {
-						model.id = int.Parse(dt.Rows[n]["id"].ToString());
-					}
-					if (dt.Rows[n]["article_id"] != null && dt.Rows[n]["article_id"].ToString() != "") {
-						model.article_id = int.Parse(dt.Rows[n]["article_id"].ToString());
-					}
-					if (dt.Rows[n]["group_id"] != null && dt.Rows[n]["group_id"].ToString() != "") {
-						model.group_id = int.Parse(dt.Rows[n]["group_id"].ToString());
-					}
-					if (dt.Rows[n]["price"] != null && dt.Rows[n]["price"].ToString() != "") {
-						model.price = decimal.Parse(dt.Rows[n]["price"].ToString());
-					}
-					ls.Add(model);
-				}
-			}
-			return ls;
-		}
 		#endregion
 
 

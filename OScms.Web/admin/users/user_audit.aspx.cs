@@ -19,12 +19,12 @@ namespace OS.Web.admin.users
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            this.keywords = YLRequest.GetQueryString("keywords");
+            this.keywords = OSRequest.GetQueryString("keywords");
 
             this.pageSize = GetPageSize(10); //每页数量
             if (!Page.IsPostBack)
             {
-                ChkAdminLevel("user_audit", YLEnums.ActionEnum.View.ToString()); //检查权限
+                ChkAdminLevel("user_audit", OSEnums.ActionEnum.View.ToString()); //检查权限
                 RptBind("status>0 and status<3" + CombSqlTxt(this.keywords), "reg_time desc,id desc");
             }
         }
@@ -32,7 +32,7 @@ namespace OS.Web.admin.users
         #region 数据绑定=================================
         private void RptBind(string _strWhere, string _orderby)
         {
-            this.page = YLRequest.GetQueryInt("page", 1);
+            this.page = OSRequest.GetQueryInt("page", 1);
             this.txtKeywords.Text = this.keywords;
             BLL.users.users bll = new BLL.users.users();
             this.rptList.DataSource = bll.GetList(this.pageSize, this.page, _strWhere, _orderby, out this.totalCount);
@@ -120,7 +120,7 @@ namespace OS.Web.admin.users
         //审核通过
         protected void btnAudit_Click(object sender, EventArgs e)
         {
-            ChkAdminLevel("user_audit", YLEnums.ActionEnum.Audit.ToString()); //检查权限
+            ChkAdminLevel("user_audit", OSEnums.ActionEnum.Audit.ToString()); //检查权限
             int sucCount = 0;
             int errorCount = 0;
             BLL.users.users bll = new BLL.users.users();
@@ -140,7 +140,7 @@ namespace OS.Web.admin.users
                     }
                 }
             }
-            AddAdminLog(YLEnums.ActionEnum.Audit.ToString(), "审核用户成功" + sucCount + "条，失败" + errorCount + "条"); //记录日志
+            AddAdminLog(OSEnums.ActionEnum.Audit.ToString(), "审核用户成功" + sucCount + "条，失败" + errorCount + "条"); //记录日志
             JscriptMsg("审核通过" + sucCount + "条，失败" + errorCount + "条！",
                 Utils.CombUrlTxt("user_audit.aspx", "keywords={0}", this.keywords), "Success");
         }

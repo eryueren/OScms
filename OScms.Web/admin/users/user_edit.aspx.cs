@@ -9,15 +9,15 @@ using OS.Common;
 namespace OS.Web.admin.users {
 	public partial class user_edit : Web.UI.ManagePage {
 		string defaultpassword = "0|0|0|0"; //默认显示密码
-		protected string action = YLEnums.ActionEnum.Add.ToString(); //操作类型
+		protected string action = OSEnums.ActionEnum.Add.ToString(); //操作类型
 		private int id = 0, flag = 0;
 		protected string groupId = string.Empty;
 
 		protected void Page_Load(object sender, EventArgs e) {
-			string _action = YLRequest.GetQueryString("action");
-			if (!string.IsNullOrEmpty(_action) && _action == YLEnums.ActionEnum.Edit.ToString()) {
-				this.action = YLEnums.ActionEnum.Edit.ToString();//修改类型
-				this.id = YLRequest.GetQueryInt("id");
+			string _action = OSRequest.GetQueryString("action");
+			if (!string.IsNullOrEmpty(_action) && _action == OSEnums.ActionEnum.Edit.ToString()) {
+				this.action = OSEnums.ActionEnum.Edit.ToString();//修改类型
+				this.id = OSRequest.GetQueryInt("id");
 				if (this.id == 0) {
 					JscriptMsg("传输参数不正确！", "back", "Error");
 					return;
@@ -28,12 +28,12 @@ namespace OS.Web.admin.users {
 				}
 			}
 			if (!Page.IsPostBack) {
-				ChkAdminLevel("user_list", YLEnums.ActionEnum.View.ToString()); //检查权限
+				ChkAdminLevel("user_list", OSEnums.ActionEnum.View.ToString()); //检查权限
 				TreeBind("is_lock=0"); //绑定类别
 				groupId = string.IsNullOrEmpty(ddlGroupId.SelectedValue.ToString()) ? "1" : ddlGroupId.SelectedValue.ToString();
 				txtUserName.Text = Utils.GetUserNumber(groupId);
 				txtUserName.Enabled = false;
-				if (action == YLEnums.ActionEnum.Edit.ToString()) //修改
+				if (action == OSEnums.ActionEnum.Edit.ToString()) //修改
                 {
 					ShowInfo(this.id);
 					txtUserName.Visible = true;
@@ -146,10 +146,10 @@ namespace OS.Web.admin.users {
 			model.point = int.Parse(txtPoint.Text.Trim());
 			model.exp = int.Parse(txtExp.Text.Trim());
 			model.reg_time = DateTime.Now;
-			model.reg_ip = YLRequest.GetIP();
+			model.reg_ip = OSRequest.GetIP();
 
 			if (bll.Add(model) > 0) {
-				AddAdminLog(YLEnums.ActionEnum.Add.ToString(), "添加用户:" + model.user_name); //记录日志
+				AddAdminLog(OSEnums.ActionEnum.Add.ToString(), "添加用户:" + model.user_name); //记录日志
 				result = true;
 			}
 			return result;
@@ -194,7 +194,7 @@ namespace OS.Web.admin.users {
 			model.exp = Utils.StrToInt(txtExp.Text.Trim(), 0);
 
 			if (bll.Update(model)) {
-				AddAdminLog(YLEnums.ActionEnum.Edit.ToString(), "修改用户信息:" + model.user_name); //记录日志
+				AddAdminLog(OSEnums.ActionEnum.Edit.ToString(), "修改用户信息:" + model.user_name); //记录日志
 				result = true;
 			}
 			return result;
@@ -203,22 +203,22 @@ namespace OS.Web.admin.users {
 
 		//保存
 		protected void btnSubmit_Click(object sender, EventArgs e) {
-			if (action == YLEnums.ActionEnum.Edit.ToString()) //修改
+			if (action == OSEnums.ActionEnum.Edit.ToString()) //修改
             {
-				ChkAdminLevel("user_list", YLEnums.ActionEnum.Edit.ToString()); //检查权限
+				ChkAdminLevel("user_list", OSEnums.ActionEnum.Edit.ToString()); //检查权限
 				if (!DoEdit(this.id)) {
 					JscriptMsg("保存过程中发生错误！", "", "Error");
 					return;
 				}
 				if (flag != 0) {
 					string strBody = txtNickName.Text + "(" + txtUserName.Text + ")" + "，您的注册信息已通过。登陆入口：http://chncra.org/login.aspx";
-					OS.Common.YLMail.sendMail("smtp.exmail.qq.com", "contact@cncra.org", "123456a", OS.Web.UI.BasePage.config.webcompany, "contact@cncra.org", txtEmail.Text, "注册信息审核通过", strBody);
+					OS.Common.OSMail.sendMail("smtp.exmail.qq.com", "contact@cncra.org", "123456a", OS.Web.UI.BasePage.config.webcompany, "contact@cncra.org", txtEmail.Text, "注册信息审核通过", strBody);
 					JMsg("审核通过信息已发送到用户邮箱");
 				}
 				JscriptMsg("修改用户成功！", "user_list.aspx", "Success");
 			} else //添加
             {
-				ChkAdminLevel("user_list", YLEnums.ActionEnum.Add.ToString()); //检查权限
+				ChkAdminLevel("user_list", OSEnums.ActionEnum.Add.ToString()); //检查权限
 				if (!DoAdd()) {
 					BLL.users.users bllUser = null;
 					//检测用户名是否重复

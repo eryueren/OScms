@@ -10,24 +10,24 @@ namespace OS.Web.admin.article
 {
     public partial class category_edit : Web.UI.ManagePage
     {
-        private string action = YLEnums.ActionEnum.Add.ToString(); //操作类型
+        private string action = OSEnums.ActionEnum.Add.ToString(); //操作类型
         protected string channel_name = string.Empty; //频道名称
         private int channel_id;
-        private int id = YLRequest.GetQueryInt("id");
+        private int id = OSRequest.GetQueryInt("id");
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            string _action = YLRequest.GetQueryString("action");
-            this.channel_id = YLRequest.GetQueryInt("channel_id");
+            string _action = OSRequest.GetQueryString("action");
+            this.channel_id = OSRequest.GetQueryInt("channel_id");
 
             if (this.channel_id == 0)
             {
                 PageErrorMsg("频道参数不正确");
             }
 
-            if (!string.IsNullOrEmpty(_action) && _action == YLEnums.ActionEnum.Edit.ToString())
+            if (!string.IsNullOrEmpty(_action) && _action == OSEnums.ActionEnum.Edit.ToString())
             {
-                this.action = YLEnums.ActionEnum.Edit.ToString();//修改类型
+                this.action = OSEnums.ActionEnum.Edit.ToString();//修改类型
                 if (this.id == 0)
                 {
                     PageErrorMsg("传输参数不正确");
@@ -39,10 +39,10 @@ namespace OS.Web.admin.article
             }
             if (!Page.IsPostBack)
             {
-                ChkAdminLevel("category", YLEnums.ActionEnum.View.ToString()); //检查权限
+                ChkAdminLevel("category", OSEnums.ActionEnum.View.ToString()); //检查权限
                 TreeBind(this.channel_id); //绑定类别
                 FieldBind(); //绑定扩展字段
-                if (action == YLEnums.ActionEnum.Edit.ToString()) //修改
+                if (action == OSEnums.ActionEnum.Edit.ToString()) //修改
                 {
                     ShowInfo(this.id);
                 }
@@ -166,7 +166,7 @@ namespace OS.Web.admin.article
                 Model.contents.article_category model = new Model.contents.article_category();
                 BLL.contents.article_category bll = new BLL.contents.article_category();
                 model.channel_id = this.channel_id;
-                model.nav_type = YLEnums.NavigationEnum.WebSite.ToString().Trim();
+                model.nav_type = OSEnums.NavigationEnum.WebSite.ToString().Trim();
                 model.call_index = txtCallIndex.Text.Trim();
                 model.title = txtTitle.Text.Trim();
 
@@ -223,7 +223,7 @@ namespace OS.Web.admin.article
 
                 if (bll.Add(model) > 0)
                 {
-                    AddAdminLog(YLEnums.ActionEnum.Add.ToString(), "添加" + this.channel_name + "频道栏目分类:" + model.title); //记录日志
+                    AddAdminLog(OSEnums.ActionEnum.Add.ToString(), "添加" + this.channel_name + "频道栏目分类:" + model.title); //记录日志
                     return true;
                 }
             }
@@ -301,7 +301,7 @@ namespace OS.Web.admin.article
                 model.category_fields = ls;
                 if (bll.Update(model))
                 {
-                    AddAdminLog(YLEnums.ActionEnum.Edit.ToString(), "修改" + this.channel_name + "频道栏目分类:" + model.title); //记录日志
+                    AddAdminLog(OSEnums.ActionEnum.Edit.ToString(), "修改" + this.channel_name + "频道栏目分类:" + model.title); //记录日志
                     return true;
                 }
             }
@@ -316,9 +316,9 @@ namespace OS.Web.admin.article
         //保存类别
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            if (action == YLEnums.ActionEnum.Edit.ToString()) //修改
+            if (action == OSEnums.ActionEnum.Edit.ToString()) //修改
             {
-                ChkAdminLevel("category", YLEnums.ActionEnum.Edit.ToString()); //检查权限
+                ChkAdminLevel("category", OSEnums.ActionEnum.Edit.ToString()); //检查权限
                 if (!DoEdit(this.id))
                 {
                     PageErrorMsg("保存过程中发生错误啦");
@@ -328,14 +328,14 @@ namespace OS.Web.admin.article
             }
             else //添加
             {
-                ChkAdminLevel("category", YLEnums.ActionEnum.Add.ToString()); //检查权限
+                ChkAdminLevel("category", OSEnums.ActionEnum.Add.ToString()); //检查权限
                 if (!DoAdd())
                 {
                     PageErrorMsg("保存过程中发生错误啦");
                 }
                 string id_url1 = this.id != -2 ? "&Id=" + this.id : "";
                 string id_url2 = ddlParentId.SelectedValue != "" ? "&Id=" + ddlParentId.SelectedValue : id_url1;
-                PageSuccessMsg("添加类别成功", "category_edit.aspx?action=" + YLEnums.ActionEnum.Add + "&channel_id=" + this.channel_id + id_url2, "category_list.aspx");
+                PageSuccessMsg("添加类别成功", "category_edit.aspx?action=" + OSEnums.ActionEnum.Add + "&channel_id=" + this.channel_id + id_url2, "category_list.aspx");
             }
         }
 

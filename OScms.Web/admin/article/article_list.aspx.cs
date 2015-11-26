@@ -13,9 +13,9 @@ namespace OS.Web.admin.article {
 		protected int page;
 		protected int pageSize;
 		protected string category_name = string.Empty;
-		protected int category_id = YLRequest.GetQueryInt("category_id");
-		protected string property = YLRequest.GetQueryString("property");
-		protected string keywords = YLRequest.GetQueryString("keywords");
+		protected int category_id = OSRequest.GetQueryInt("category_id");
+		protected string property = OSRequest.GetQueryString("property");
+		protected string keywords = OSRequest.GetQueryString("keywords");
 
 		protected string prolistview = string.Empty;
 
@@ -27,14 +27,14 @@ namespace OS.Web.admin.article {
 			this.pageSize = GetPageSize(10); //每页数量
 			this.prolistview = Utils.GetCookie("article_list_view"); //显示方式
 			if (!Page.IsPostBack) {
-				ChkAdminLevel(category_name, YLEnums.ActionEnum.View.ToString()); //检查权限
+				ChkAdminLevel(category_name, OSEnums.ActionEnum.View.ToString()); //检查权限
 				RptBind("id>0 and category_id=" + category_id + CombSqlTxt(this.keywords, this.property), "sort_id asc,add_time desc,id desc");
 			}
 		}
 
 		#region 数据绑定=================================
 		private void RptBind(string _strWhere, string _orderby) {
-			this.page = YLRequest.GetQueryInt("page", 1);
+			this.page = OSRequest.GetQueryInt("page", 1);
 			this.ddlProperty.SelectedValue = this.property;
 			this.txtKeywords.Text = this.keywords;
 			//图表或列表显示
@@ -109,7 +109,7 @@ namespace OS.Web.admin.article {
 
 		//设置操作
 		protected void rptList_ItemCommand(object source, RepeaterCommandEventArgs e) {
-			ChkAdminLevel("category_" + this.category_name + "_list", YLEnums.ActionEnum.Edit.ToString()); //检查权限
+			ChkAdminLevel("category_" + this.category_name + "_list", OSEnums.ActionEnum.Edit.ToString()); //检查权限
 			int id = Convert.ToInt32(((HiddenField)e.Item.FindControl("hidId")).Value);
 			BLL.contents.article bll = new BLL.contents.article();
 			Model.contents.article model = bll.GetModel(id);
@@ -190,7 +190,7 @@ namespace OS.Web.admin.article {
 
 		//保存排序
 		protected void btnSave_Click(object sender, EventArgs e) {
-			ChkAdminLevel("category_" + this.category_name + "_list", YLEnums.ActionEnum.Edit.ToString()); //检查权限
+			ChkAdminLevel("category_" + this.category_name + "_list", OSEnums.ActionEnum.Edit.ToString()); //检查权限
 			BLL.contents.article bll = new BLL.contents.article();
 			Repeater rptList = new Repeater();
 			switch (this.prolistview) {
@@ -209,14 +209,14 @@ namespace OS.Web.admin.article {
 				}
 				bll.UpdateField(id, "sort_id=" + sortId.ToString());
 			}
-			AddAdminLog(YLEnums.ActionEnum.Edit.ToString(), "保存" + this.category_name + "频道内容排序"); //记录日志
+			AddAdminLog(OSEnums.ActionEnum.Edit.ToString(), "保存" + this.category_name + "频道内容排序"); //记录日志
 			Response.Redirect(Utils.CombUrlTxt("article_list.aspx", "category_id={0}&keywords={1}&property={2}",
 			   this.category_id.ToString(), this.keywords, this.property));
 		}
 
 		//批量删除
 		protected void btnDelete_Click(object sender, EventArgs e) {
-			ChkAdminLevel(category_name, YLEnums.ActionEnum.Delete.ToString()); //检查权限
+			ChkAdminLevel(category_name, OSEnums.ActionEnum.Delete.ToString()); //检查权限
 			int sucCount = 0; //成功数量
 			int errorCount = 0; //失败数量
 			BLL.contents.article bll = new BLL.contents.article();
@@ -244,7 +244,7 @@ namespace OS.Web.admin.article {
 					}
 				}
 			}
-			AddAdminLog(YLEnums.ActionEnum.Edit.ToString(), "删除" + this.category_name + "频道内容成功" + sucCount + "条，失败" + errorCount + "条"); //记录日志
+			AddAdminLog(OSEnums.ActionEnum.Edit.ToString(), "删除" + this.category_name + "频道内容成功" + sucCount + "条，失败" + errorCount + "条"); //记录日志
 			Response.Redirect(Utils.CombUrlTxt("article_list.aspx", "category_id={0}&keywords={1}&property={2}",
 			this.category_id.ToString(), this.keywords, this.property));
 		}

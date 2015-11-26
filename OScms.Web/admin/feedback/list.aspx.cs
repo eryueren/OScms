@@ -16,11 +16,11 @@ namespace OS.Web.manage.feedback {
 		protected string keywords = string.Empty;
 
 		protected void Page_Load(object sender, EventArgs e) {
-			this.keywords = YLRequest.GetQueryString("keywords");
+			this.keywords = OSRequest.GetQueryString("keywords");
 
 			this.pageSize = GetPageSize(10); //每页数量
 			if (!Page.IsPostBack) {
-				ChkAdminLevel("feedback", YLEnums.ActionEnum.View.ToString()); //检查权限
+				ChkAdminLevel("feedback", OSEnums.ActionEnum.View.ToString()); //检查权限
 				RptBind("id>0" + CombSqlTxt(this.keywords), "is_lock desc,add_time desc");
 			}
 		}
@@ -82,7 +82,7 @@ namespace OS.Web.manage.feedback {
 
 		//批量审核
 		protected void lbtnUnLock_Click(object sender, EventArgs e) {
-			ChkAdminLevel("plugin_feedback", YLEnums.ActionEnum.Audit.ToString()); //检查权限
+			ChkAdminLevel("plugin_feedback", OSEnums.ActionEnum.Audit.ToString()); //检查权限
 			BLL.plugins.feedback bll = new BLL.plugins.feedback();
 			for (int i = 0; i < rptList.Items.Count; i++) {
 				int id = Convert.ToInt32(((HiddenField)rptList.Items[i].FindControl("hidId")).Value);
@@ -91,13 +91,13 @@ namespace OS.Web.manage.feedback {
 					bll.UpdateField(id, "is_lock=1");
 				}
 			}
-			AddAdminLog(YLEnums.ActionEnum.Audit.ToString(), "审核留言插件内容"); //记录日志
+			AddAdminLog(OSEnums.ActionEnum.Audit.ToString(), "审核留言插件内容"); //记录日志
 			Response.Redirect(Utils.CombUrlTxt("list.aspx", "keywords={0}", this.keywords));
 		}
 
 		//批量删除
 		protected void btnDelete_Click(object sender, EventArgs e) {
-			ChkAdminLevel("feedback", YLEnums.ActionEnum.Delete.ToString()); //检查权限
+			ChkAdminLevel("feedback", OSEnums.ActionEnum.Delete.ToString()); //检查权限
 			int sucCount = 0;
 			int errorCount = 0;
 			BLL.plugins.feedback bll = new BLL.plugins.feedback();
@@ -113,7 +113,7 @@ namespace OS.Web.manage.feedback {
 					}
 				}
 			}
-			AddAdminLog(YLEnums.ActionEnum.Delete.ToString(), "删除留言成功" + sucCount + "条，失败" + errorCount + "条"); //记录日志
+			AddAdminLog(OSEnums.ActionEnum.Delete.ToString(), "删除留言成功" + sucCount + "条，失败" + errorCount + "条"); //记录日志
 			Response.Redirect(Utils.CombUrlTxt("list.aspx", "keywords={0}", this.keywords));
 
 		}

@@ -1,0 +1,13 @@
+E:\code2015\L_律师\code\L_LvShiGuanWang\OS.BLL\bin\Release\OS.BLL.dll
+E:\code2015\L_律师\code\L_LvShiGuanWang\OS.BLL\bin\Release\OS.BLL.pdb
+E:\code2015\L_律师\code\L_LvShiGuanWang\OS.BLL\bin\Release\OS.Common.dll
+E:\code2015\L_律师\code\L_LvShiGuanWang\OS.BLL\bin\Release\OS.DAL.dll
+E:\code2015\L_律师\code\L_LvShiGuanWang\OS.BLL\bin\Release\OS.Model.dll
+E:\code2015\L_律师\code\L_LvShiGuanWang\OS.BLL\bin\Release\OS.DBUtility.dll
+E:\code2015\L_律师\code\L_LvShiGuanWang\OS.BLL\bin\Release\OS.Common.pdb
+E:\code2015\L_律师\code\L_LvShiGuanWang\OS.BLL\bin\Release\OS.DAL.pdb
+E:\code2015\L_律师\code\L_LvShiGuanWang\OS.BLL\bin\Release\OS.Model.pdb
+E:\code2015\L_律师\code\L_LvShiGuanWang\OS.BLL\bin\Release\OS.DBUtility.pdb
+E:\code2015\L_律师\code\L_LvShiGuanWang\OS.BLL\obj\Release\OS.BLL.csprojResolveAssemblyReference.cache
+E:\code2015\L_律师\code\L_LvShiGuanWang\OS.BLL\obj\Release\OS.BLL.dll
+E:\code2015\L_律师\code\L_LvShiGuanWang\OS.BLL\obj\Release\OS.BLL.pdb

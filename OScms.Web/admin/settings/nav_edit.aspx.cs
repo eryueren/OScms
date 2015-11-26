@@ -10,18 +10,18 @@ namespace OS.Web.admin.settings
 {
     public partial class nav_edit : Web.UI.ManagePage
     {
-        private string action = YLEnums.ActionEnum.Add.ToString(); //操作类型
+        private string action = OSEnums.ActionEnum.Add.ToString(); //操作类型
         private int id = 0;
 
        protected string style = "";
         protected void Page_Load(object sender, EventArgs e)
         {
-            string _action = YLRequest.GetQueryString("action");
-            this.id = YLRequest.GetQueryInt("id");
+            string _action = OSRequest.GetQueryString("action");
+            this.id = OSRequest.GetQueryInt("id");
 
-            if (!string.IsNullOrEmpty(_action) && _action == YLEnums.ActionEnum.Edit.ToString())
+            if (!string.IsNullOrEmpty(_action) && _action == OSEnums.ActionEnum.Edit.ToString())
             {
-                this.action = YLEnums.ActionEnum.Edit.ToString();//修改类型
+                this.action = OSEnums.ActionEnum.Edit.ToString();//修改类型
                 if (this.id == 0)
                 {
                     PageErrorMsg("传输参数不正确");
@@ -34,10 +34,10 @@ namespace OS.Web.admin.settings
             }
             if (!Page.IsPostBack)
             {
-                ChkAdminLevel("app_navigation_list", YLEnums.ActionEnum.View.ToString()); //检查权限
+                ChkAdminLevel("app_navigation_list", OSEnums.ActionEnum.View.ToString()); //检查权限
                TreeBind(); //绑定导航菜单
                 ActionTypeBind(); //绑定操作权限类型
-                if (action == YLEnums.ActionEnum.Edit.ToString()) //修改
+                if (action == OSEnums.ActionEnum.Edit.ToString()) //修改
                 {
                     ShowInfo(this.id);
                 }
@@ -139,7 +139,7 @@ namespace OS.Web.admin.settings
                 Model.contents.article_category model = new Model.contents.article_category();
                 BLL.contents.article_category bll = new BLL.contents.article_category();
 
-                model.nav_type = YLEnums.NavigationEnum.System.ToString().Trim();;
+                model.nav_type = OSEnums.NavigationEnum.System.ToString().Trim();;
                 model.title = txtTitle.Text.Trim();
                 model.channel_id = -1;
                 model.call_index = txtName.Text.Trim();
@@ -166,7 +166,7 @@ namespace OS.Web.admin.settings
 
                 if (bll.Add(model) > 0)
                 {
-                    AddAdminLog(YLEnums.ActionEnum.Add.ToString(), "添加导航信息:" + model.title); //记录日志
+                    AddAdminLog(OSEnums.ActionEnum.Add.ToString(), "添加导航信息:" + model.title); //记录日志
                     return true;
                 }
             }
@@ -219,7 +219,7 @@ namespace OS.Web.admin.settings
 
                 if (bll.Update(model))
                 {
-                    AddAdminLog(YLEnums.ActionEnum.Add.ToString(), "修改导航信息:" + model.title); //记录日志
+                    AddAdminLog(OSEnums.ActionEnum.Add.ToString(), "修改导航信息:" + model.title); //记录日志
                     return true;
                 }
             }
@@ -234,9 +234,9 @@ namespace OS.Web.admin.settings
         //保存
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            if (action == YLEnums.ActionEnum.Edit.ToString()) //修改
+            if (action == OSEnums.ActionEnum.Edit.ToString()) //修改
             {
-                ChkAdminLevel("app_navigation_list", YLEnums.ActionEnum.Edit.ToString()); //检查权限
+                ChkAdminLevel("app_navigation_list", OSEnums.ActionEnum.Edit.ToString()); //检查权限
                 if (!DoEdit(this.id))
                 {
                     PageErrorMsg("保存过程中发生错误啦");
@@ -245,7 +245,7 @@ namespace OS.Web.admin.settings
             }
             else //添加
             {
-                ChkAdminLevel("app_navigation_list", YLEnums.ActionEnum.Add.ToString()); //检查权限
+                ChkAdminLevel("app_navigation_list", OSEnums.ActionEnum.Add.ToString()); //检查权限
                 if (!DoAdd())
                 {
                     PageErrorMsg("保存过程中发生错误啦");

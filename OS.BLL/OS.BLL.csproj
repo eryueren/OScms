@@ -40,14 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="channels\article.cs" />
-    <Compile Include="channels\category.cs" />
     <Compile Include="configs\mail_template.cs" />
     <Compile Include="configs\sys_config.cs" />
     <Compile Include="configs\urls_config.cs" />
     <Compile Include="configs\url_rewrite.cs" />
     <Compile Include="configs\user_config.cs" />
-    <Compile Include="configs\yl_temp.cs" />
     <Compile Include="contents\article.cs" />
     <Compile Include="contents\article_attach.cs" />
     <Compile Include="contents\article_attribute_field.cs" />

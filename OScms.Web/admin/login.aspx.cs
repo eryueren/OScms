@@ -43,17 +43,17 @@ namespace OS.Web.admin {
 				msgtip.InnerHtml = "用户名或密码有误，请重试！";
 				return;
 			}
-			Session[YLKeys.SESSION_ADMIN_INFO] = model;
+			Session[OSKeys.SESSION_ADMIN_INFO] = model;
 			Session.Timeout = 45;
 			//写入登录日志
 			Model.configs.siteconfig siteConfig = new BLL.configs.siteconfig().loadConfig();
 			if (siteConfig.logstatus > 0) {
-				new BLL.managers.manager_log().Add(model.id, model.user_name, YLEnums.ActionEnum.Login.ToString(), "用户登录");
+				new BLL.managers.manager_log().Add(model.id, model.user_name, OSEnums.ActionEnum.Login.ToString(), "用户登录");
 			}
 			//写入Cookies
 			Utils.WriteCookie("LoginName", model.user_name, 14400);
-			Utils.WriteCookie("AdminName", "YL", model.user_name);
-			Utils.WriteCookie("AdminPwd", "YL", model.password);
+			Utils.WriteCookie("AdminName", "OS", model.user_name);
+			Utils.WriteCookie("AdminPwd", "OS", model.password);
 			Response.Redirect("Main.aspx");
 			return;
 		}

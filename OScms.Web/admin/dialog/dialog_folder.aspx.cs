@@ -10,7 +10,7 @@ namespace OS.Web.admin.dialog
 {
     public partial class dialog_folder : Web.UI.ManagePage
     {
-        private string filename = YLRequest.GetString("name");
+        private string filename = OSRequest.GetString("name");
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)

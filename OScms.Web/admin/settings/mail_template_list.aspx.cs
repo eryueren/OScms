@@ -19,12 +19,12 @@ namespace OS.Web.admin.settings
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            this.keywords = YLRequest.GetQueryString("keywords");
+            this.keywords = OSRequest.GetQueryString("keywords");
 
             this.pageSize = GetPageSize(10); //每页数量
             if (!Page.IsPostBack)
             {
-                ChkAdminLevel("user_mail_template", YLEnums.ActionEnum.View.ToString()); //检查权限
+                ChkAdminLevel("user_mail_template", OSEnums.ActionEnum.View.ToString()); //检查权限
                 RptBind("id>0" + CombSqlTxt(keywords), "id asc");
             }
         }
@@ -32,7 +32,7 @@ namespace OS.Web.admin.settings
         #region 数据绑定=================================
         private void RptBind(string _strWhere, string _orderby)
         {
-            this.page = YLRequest.GetQueryInt("page", 1);
+            this.page = OSRequest.GetQueryInt("page", 1);
             txtKeywords.Text = this.keywords;
             BLL.configs.mail_template bll = new BLL.configs.mail_template();
             this.rptList.DataSource = bll.GetList(this.pageSize, this.page, _strWhere, _orderby, out this.totalCount);
@@ -97,7 +97,7 @@ namespace OS.Web.admin.settings
         //批量删除
         protected void btnDelete_Click(object sender, EventArgs e)
         {
-            ChkAdminLevel("user_mail_template", YLEnums.ActionEnum.Delete.ToString()); //检查权限
+            ChkAdminLevel("user_mail_template", OSEnums.ActionEnum.Delete.ToString()); //检查权限
             int sucCount = 0;
             int errorCount = 0;
             BLL.configs.mail_template bll = new BLL.configs.mail_template();
@@ -117,7 +117,7 @@ namespace OS.Web.admin.settings
                     }
                 }
             }
-            AddAdminLog(YLEnums.ActionEnum.Delete.ToString(), "删除邮件模板成功" + sucCount + "条，失败" + errorCount + "条"); //记录日志
+            AddAdminLog(OSEnums.ActionEnum.Delete.ToString(), "删除邮件模板成功" + sucCount + "条，失败" + errorCount + "条"); //记录日志
             Response.Redirect(Utils.CombUrlTxt("mail_template_list.aspx", "keywords={0}", this.keywords));
         }
 

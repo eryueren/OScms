@@ -17,12 +17,12 @@ namespace OS.Web.admin.settings
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            this.channel = YLRequest.GetQueryString("channel");
-            this.type = YLRequest.GetQueryString("type");
+            this.channel = OSRequest.GetQueryString("channel");
+            this.type = OSRequest.GetQueryString("type");
 
             if (!Page.IsPostBack)
             {
-                ChkAdminLevel("site_url_rewrite", YLEnums.ActionEnum.View.ToString()); //检查权限
+                ChkAdminLevel("site_url_rewrite", OSEnums.ActionEnum.View.ToString()); //检查权限
                 RptBind();
             }
         }
@@ -42,7 +42,7 @@ namespace OS.Web.admin.settings
         //删除操作
         protected void btnDelete_Click(object sender, EventArgs e)
         {
-            ChkAdminLevel("site_url_rewrite", YLEnums.ActionEnum.Delete.ToString()); //检查权限
+            ChkAdminLevel("site_url_rewrite", OSEnums.ActionEnum.Delete.ToString()); //检查权限
             BLL.configs.url_rewrite bll = new BLL.configs.url_rewrite();
             for (int i = 0; i < rptList.Items.Count; i++)
             {
@@ -53,7 +53,7 @@ namespace OS.Web.admin.settings
                     bll.Remove("name", urlName);
                 }
             }
-            AddAdminLog(YLEnums.ActionEnum.Delete.ToString(), "删除URL配置信息"); //记录日志
+            AddAdminLog(OSEnums.ActionEnum.Delete.ToString(), "删除URL配置信息"); //记录日志
             PageSuccessMsg("添加链接成功！", "", "url_rewrite_list.aspx");
          
         }

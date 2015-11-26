@@ -32,7 +32,7 @@ namespace  OS.Common {
 			}
 		}
 		public static string GetVersion() {
-			return YLKeys.ASSEMBLY_VERSION;
+			return OSKeys.ASSEMBLY_VERSION;
 		}
 		#endregion
 

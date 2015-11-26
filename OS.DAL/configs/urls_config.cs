@@ -45,7 +45,7 @@ namespace  OS.DAL.configs
         {
             try
             {
-                string filePath = Utils.GetXmlMapPath(YLKeys.FILE_URL_XML_CONFING);
+                string filePath = Utils.GetXmlMapPath(OSKeys.FILE_URL_XML_CONFING);
                 XmlDocument doc = new XmlDocument();
                 doc.Load(filePath);
                 XmlNode xn = doc.SelectSingleNode("urls");
@@ -76,7 +76,7 @@ namespace  OS.DAL.configs
         /// </summary>
         public bool Edit(Model.configs.urls_config model)
         {
-            string filePath = Utils.GetXmlMapPath(YLKeys.FILE_URL_XML_CONFING);
+            string filePath = Utils.GetXmlMapPath(OSKeys.FILE_URL_XML_CONFING);
             XmlDocument doc = new XmlDocument();
             doc.Load(filePath);
             XmlNode xn = doc.SelectSingleNode("urls");
@@ -120,7 +120,7 @@ namespace  OS.DAL.configs
         /// </summary>
         public bool Remove(string attrName, string attrValue)
         {
-            string filePath = Utils.GetXmlMapPath(YLKeys.FILE_URL_XML_CONFING);
+            string filePath = Utils.GetXmlMapPath(OSKeys.FILE_URL_XML_CONFING);
             XmlDocument doc = new XmlDocument();
             doc.Load(filePath);
             XmlNode xn = doc.SelectSingleNode("urls");
@@ -148,7 +148,7 @@ namespace  OS.DAL.configs
         {
             try
             {
-                string filePath = Utils.GetXmlMapPath(YLKeys.FILE_URL_XML_CONFING);
+                string filePath = Utils.GetXmlMapPath(OSKeys.FILE_URL_XML_CONFING);
                 XmlDocument doc = new XmlDocument();
                 doc.Load(filePath);
                 XmlNode xn = doc.SelectSingleNode("urls");
@@ -179,7 +179,7 @@ namespace  OS.DAL.configs
         {
             try
             {
-                string filePath = Utils.GetXmlMapPath(YLKeys.FILE_URL_XML_CONFING);
+                string filePath = Utils.GetXmlMapPath(OSKeys.FILE_URL_XML_CONFING);
                 XmlDocument doc = new XmlDocument();
                 doc.Load(filePath);
                 XmlNode xn = doc.SelectSingleNode("urls");
@@ -212,7 +212,7 @@ namespace  OS.DAL.configs
         public Model.configs.urls_config GetInfo(string attrValue)
         {
             Model.configs.urls_config model = new Model.configs.urls_config();
-            string filePath = Utils.GetXmlMapPath(YLKeys.FILE_URL_XML_CONFING);
+            string filePath = Utils.GetXmlMapPath(OSKeys.FILE_URL_XML_CONFING);
             XmlDocument doc = new XmlDocument();
             doc.Load(filePath);
             XmlNode xn = doc.SelectSingleNode("urls");
@@ -253,7 +253,7 @@ namespace  OS.DAL.configs
         public List<Model.configs.urls_config> GetList()
         {
             List<Model.configs.urls_config> ls = new List<Model.configs.urls_config>();
-            string filePath = Utils.GetXmlMapPath(YLKeys.FILE_URL_XML_CONFING);
+            string filePath = Utils.GetXmlMapPath(OSKeys.FILE_URL_XML_CONFING);
             XmlDocument doc = new XmlDocument();
             doc.Load(filePath);
             XmlNode xn = doc.SelectSingleNode("urls");

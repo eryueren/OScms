@@ -201,7 +201,7 @@ namespace OS.BLL.users
                 //增加金额
                 if (groupModel.amount > 0)
                 {
-                    new BLL.users.user_amount_log().Add(model.id, model.user_name, YLEnums.AmountTypeEnum.SysGive.ToString(), groupModel.amount, "升级赠送金额", 1);
+                    new BLL.users.user_amount_log().Add(model.id, model.user_name, OSEnums.AmountTypeEnum.SysGive.ToString(), groupModel.amount, "升级赠送金额", 1);
                 }
             }
             return true;

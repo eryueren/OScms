@@ -30,7 +30,7 @@
   <div id="floatHead" class="toolbar">
     <div class="l-list">
       <ul class="icon-list">
-        <li><a class="add" href="url_rewrite_edit.aspx?action=<%=YLEnums.ActionEnum.Add %>"><i></i><span>新增</span></a></li>
+        <li><a class="add" href="url_rewrite_edit.aspx?action=<%=OSEnums.ActionEnum.Add %>"><i></i><span>新增</span></a></li>
         <li><a class="all" href="javascript:;" onclick="checkAll(this);"><i></i><span>全选</span></a></li>
         <li><asp:LinkButton ID="btnDelete" runat="server" CssClass="del" OnClientClick="return ExePostBack('btnDelete','本操作会导致网站前台无法运作，是否继续？');" onclick="btnDelete_Click"><i></i><span>删除</span></asp:LinkButton></li>
       </ul>
@@ -60,7 +60,7 @@
     <td><%#Eval("name")%></td>
     <td><%#Eval("page")%></td>
     <td><%#Eval("templet")%></td>
-    <td align="center"><a href="url_rewrite_edit.aspx?action=<%#YLEnums.ActionEnum.Edit %>&name=<%#Eval("name")%>">修改</a></td>
+    <td align="center"><a href="url_rewrite_edit.aspx?action=<%#OSEnums.ActionEnum.Edit %>&name=<%#Eval("name")%>">修改</a></td>
   </tr>
 </ItemTemplate>
 <FooterTemplate>

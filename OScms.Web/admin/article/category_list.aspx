@@ -97,7 +97,7 @@
   <div id="floatHead" class="toolbar">
     <div class="l-list">
       <ul class="icon-list">
-        <li><a class="add" href="category_edit.aspx?action=<%=YLEnums.ActionEnum.Add %>&channel_id=<%=get_channel_id() %>&id=1"><i></i><span>新增栏目</span></a></li>
+        <li><a class="add" href="category_edit.aspx?action=<%=OSEnums.ActionEnum.Add %>&channel_id=<%=get_channel_id() %>&id=1"><i></i><span>新增栏目</span></a></li>
         <li><a href="javascript: d.openAll();">展开所有菜单</a></li>
         <li><a href="javascript: d.closeAll();">关闭所有菜单</a></li>
          </ul>

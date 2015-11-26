@@ -14,7 +14,7 @@ namespace OS.Web.admin.article
         protected int totalCount;
         protected int page;
         protected int pageSize;
-        protected string keywords = YLRequest.GetQueryString("keywords");
+        protected string keywords = OSRequest.GetQueryString("keywords");
 
         protected string prolistview = string.Empty;
 
@@ -25,7 +25,7 @@ namespace OS.Web.admin.article
          
             if (!Page.IsPostBack)
             {
-                ChkAdminLevel("link", YLEnums.ActionEnum.View.ToString()); //检查权限
+                ChkAdminLevel("link", OSEnums.ActionEnum.View.ToString()); //检查权限
              RptBind("id>0"+ CombSqlTxt(this.keywords), "sort_id asc,add_time desc,id desc");
             }
         }
@@ -33,7 +33,7 @@ namespace OS.Web.admin.article
         #region 数据绑定=================================
         private void RptBind(string _strWhere, string _orderby)
         {
-            this.page = YLRequest.GetQueryInt("page", 1);
+            this.page = OSRequest.GetQueryInt("page", 1);
 
             this.txtKeywords.Text = this.keywords;
             //图表或列表显示
@@ -108,7 +108,7 @@ namespace OS.Web.admin.article
         //批量删除
         protected void btnDelete_Click(object sender, EventArgs e)
         {
-            ChkAdminLevel("link", YLEnums.ActionEnum.Delete.ToString()); //检查权限
+            ChkAdminLevel("link", OSEnums.ActionEnum.Delete.ToString()); //检查权限
             int sucCount = 0; //成功数量
             int errorCount = 0; //失败数量
             BLL.contents.article bll = new BLL.contents.article();
@@ -130,7 +130,7 @@ namespace OS.Web.admin.article
                     }
                 }
             }
-                AddAdminLog(YLEnums.ActionEnum.Edit.ToString(), "删除[搜索-"+this.keywords+"]频道内容成功" + sucCount + "条，失败" + errorCount + "条"); //记录日志
+                AddAdminLog(OSEnums.ActionEnum.Edit.ToString(), "删除[搜索-"+this.keywords+"]频道内容成功" + sucCount + "条，失败" + errorCount + "条"); //记录日志
                 Response.Redirect(Utils.CombUrlTxt("search.aspx", "keywords={0}", this.keywords));
         }
 

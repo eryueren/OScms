@@ -11,7 +11,7 @@ namespace OS.Web.admin.settings {
 		string defaultpassword = "0|0|0|0"; //默认显示密码
 		protected void Page_Load(object sender, EventArgs e) {
 			if (!Page.IsPostBack) {
-				ChkAdminLevel("site_config", YLEnums.ActionEnum.View.ToString()); //检查权限
+				ChkAdminLevel("site_config", OSEnums.ActionEnum.View.ToString()); //检查权限
 				ShowInfo();
 			}
 		}
@@ -124,7 +124,7 @@ namespace OS.Web.admin.settings {
 		/// 保存配置信息
 		/// </summary>
 		protected void btnSubmit_Click(object sender, EventArgs e) {
-			ChkAdminLevel("site_config", YLEnums.ActionEnum.Edit.ToString()); //检查权限
+			ChkAdminLevel("site_config", OSEnums.ActionEnum.Edit.ToString()); //检查权限
 			BLL.configs.siteconfig bll = new BLL.configs.siteconfig();
 			Model.configs.siteconfig model = bll.loadConfig();
 
@@ -213,7 +213,7 @@ namespace OS.Web.admin.settings {
 			model.pricestudent = pricestudent.Text != "" ? Convert.ToDecimal(pricestudent.Text) : 0;
 
 			bll.saveConifg(model);
-			AddAdminLog(YLEnums.ActionEnum.Edit.ToString(), "修改系统配置信息"); //记录日志
+			AddAdminLog(OSEnums.ActionEnum.Edit.ToString(), "修改系统配置信息"); //记录日志
 
 			PageSuccessMsg("修改系统配置成功", "", "sys_config.aspx");
 

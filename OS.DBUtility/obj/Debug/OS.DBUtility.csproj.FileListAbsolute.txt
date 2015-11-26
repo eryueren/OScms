@@ -3,3 +3,15 @@ E:\code2015\O_OScms\code\OScms\OS.DBUtility\bin\Debug\OS.DBUtility.pdb
 E:\code2015\O_OScms\code\OScms\OS.DBUtility\obj\Debug\OS.DBUtility.dll
 E:\code2015\O_OScms\code\OScms\OS.DBUtility\obj\Debug\OS.DBUtility.pdb
 E:\code2015\O_OScms\code\OScms\OS.DBUtility\obj\Debug\OS.DBUtility.csprojResolveAssemblyReference.cache
+E:\code2015\L_律师官网\code\OS.DBUtility\bin\Debug\OS.DBUtility.dll
+E:\code2015\L_律师官网\code\OS.DBUtility\bin\Debug\OS.DBUtility.pdb
+E:\code2015\L_律师官网\code\OS.DBUtility\obj\Debug\OS.DBUtility.dll
+E:\code2015\L_律师官网\code\OS.DBUtility\obj\Debug\OS.DBUtility.pdb
+E:\code2015\O_OScms\asp.net\OScms\OS.DBUtility\bin\Debug\OS.DBUtility.dll
+E:\code2015\O_OScms\asp.net\OScms\OS.DBUtility\bin\Debug\OS.DBUtility.pdb
+E:\code2015\O_OScms\asp.net\OScms\OS.DBUtility\obj\Debug\OS.DBUtility.dll
+E:\code2015\O_OScms\asp.net\OScms\OS.DBUtility\obj\Debug\OS.DBUtility.pdb
+E:\code2015\R_任务发布系统\code\OScms\OS.DBUtility\bin\Debug\OS.DBUtility.dll
+E:\code2015\R_任务发布系统\code\OScms\OS.DBUtility\bin\Debug\OS.DBUtility.pdb
+E:\code2015\R_任务发布系统\code\OScms\OS.DBUtility\obj\Debug\OS.DBUtility.dll
+E:\code2015\R_任务发布系统\code\OScms\OS.DBUtility\obj\Debug\OS.DBUtility.pdb

@@ -71,11 +71,11 @@ namespace OS.BLL.configs
         /// </summary>
         public List<Model.configs.urls_config> GetListAll()
         {
-            List<Model.configs.urls_config> ls = CacheHelper.Get<List<Model.configs.urls_config>>(YLKeys.CACHE_SITE_URLS_LIST);
+            List<Model.configs.urls_config> ls = CacheHelper.Get<List<Model.configs.urls_config>>(OSKeys.CACHE_SITE_URLS_LIST);
             if (ls == null)
             {
-                CacheHelper.Insert(YLKeys.CACHE_SITE_URLS_LIST, dal.GetList(), Utils.GetXmlMapPath(YLKeys.FILE_URL_XML_CONFING));
-                ls = CacheHelper.Get<List<Model.configs.urls_config>>(YLKeys.CACHE_SITE_URLS_LIST);
+                CacheHelper.Insert(OSKeys.CACHE_SITE_URLS_LIST, dal.GetList(), Utils.GetXmlMapPath(OSKeys.FILE_URL_XML_CONFING));
+                ls = CacheHelper.Get<List<Model.configs.urls_config>>(OSKeys.CACHE_SITE_URLS_LIST);
             }
             return ls;
         }

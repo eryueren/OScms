@@ -8,9 +8,9 @@ using System.Data;
 using System.Web;
 using System.Web.UI;
 using System.Configuration;
-using  OS.Common;
+using OS.Common;
 
-namespace  OS.Web.UI {
+namespace OS.Web.UI {
 	public partial class BasePage : System.Web.UI.Page {
 
 		public static Model.configs.siteconfig config = new BLL.configs.siteconfig().loadConfig();
@@ -21,44 +21,7 @@ namespace  OS.Web.UI {
 				HttpContext.Current.Response.Redirect(config.webpath + "error.aspx?msg=" + Utils.UrlEncode(config.webclosereason));
 				return;
 			}
-			ShowPage();
 		}
-
-
-		//模板判断
-		public static string pageUrl(int _pageId) {
-			string strPage = "";
-			switch (_pageId) {
-				case 0:
-					strPage = "#";
-					break;
-				case 1:
-					strPage = "article";
-					break;
-				case 2:
-					strPage = "article_list";
-					break;
-				case 3:
-					strPage = "article_pic";
-					break;
-				case 4:
-					strPage = "pic_list";
-					break;
-			}
-			return strPage.ToString();
-		}
-
-
-
-
-		/// <summary>
-		/// 页面处理虚方法
-		/// </summary>
-		protected virtual void ShowPage() {
-			//虚方法代码
-		}
-
-
 		#region 页面通用方法==========================================
 		/// <summary>
 		/// 返回URL重写统一链接地址
@@ -81,13 +44,16 @@ namespace  OS.Web.UI {
 				if (config.staticstatus > 0) {
 					if (_params.Length > 0) {
 						return linkStartString + GetUrlExtension(model.page, config.staticextension) + string.Format("{0}", _params);
-					} else {
+					}
+					else {
 						return linkStartString + GetUrlExtension(model.page, config.staticextension);
 					}
-				} else {
+				}
+				else {
 					if (_params.Length > 0) {
 						return linkStartString + model.page + string.Format("{0}", _params);
-					} else {
+					}
+					else {
 						return linkStartString + model.page;
 					}
 				}
@@ -99,7 +65,8 @@ namespace  OS.Web.UI {
 					//检查网站重写状态
 					if (config.staticstatus > 0) {
 						return linkStartString + string.Format(GetUrlExtension(item.path, config.staticextension), _params);
-					} else {
+					}
+					else {
 						string queryString = Regex.Replace(string.Format(item.path, _params), item.pattern, item.querystring, RegexOptions.None | RegexOptions.IgnoreCase);
 						if (queryString.Length > 0) {
 							queryString = "?" + queryString;
@@ -176,8 +143,8 @@ namespace  OS.Web.UI {
 		/// <returns></returns>
 		public static string GetImgUrl(int id) {
 			string rStr = string.Empty;
-			 OS.BLL.contents.article_category bll = new  OS.BLL.contents.article_category();
-			 OS.Model.contents.article_category model = new  OS.Model.contents.article_category();
+			OS.BLL.contents.article_category bll = new OS.BLL.contents.article_category();
+			OS.Model.contents.article_category model = new OS.Model.contents.article_category();
 			model = bll.GetModel(id);
 			if (model != null) {
 				rStr = model.img_url;
@@ -191,8 +158,8 @@ namespace  OS.Web.UI {
 		/// <returns></returns>
 		public static string GetLinkUrl(string category_id) {
 			string rStr = string.Empty;
-			 OS.BLL.contents.article bll = new  OS.BLL.contents.article();
-			 OS.Model.contents.article model = new  OS.Model.contents.article();
+			OS.BLL.contents.article bll = new OS.BLL.contents.article();
+			OS.Model.contents.article model = new OS.Model.contents.article();
 			model = bll.GetModel(category_id);
 			if (model != null) {
 				rStr = " <a target=\"_blank\"  href=\"" + model.link_url + "\"><img src=\"" + model.img_url + "\" /></a>";
@@ -206,8 +173,8 @@ namespace  OS.Web.UI {
 		/// <returns></returns>
 		public static string GetLunBoImgUrl(int id) {
 			string rStr = string.Empty;
-			 OS.BLL.contents.article_category bll = new  OS.BLL.contents.article_category();
-			 OS.Model.contents.article_category model = new  OS.Model.contents.article_category();
+			OS.BLL.contents.article_category bll = new OS.BLL.contents.article_category();
+			OS.Model.contents.article_category model = new OS.Model.contents.article_category();
 			model = bll.GetModel(id);
 			if (model != null) {
 				string h = "154";
@@ -250,7 +217,8 @@ namespace  OS.Web.UI {
 					for (int ic = 0; ic < dtChild.Rows.Count; ic++) {
 						if (dtChild.Rows[ic]["id"].ToString().Trim() == "167") {
 							rStr.Append("<a  id=\"child" + dtChild.Rows[ic]["id"] + "\"  target=\"_blank\"  href=\"" + dtChild.Rows[ic]["link_url"]);
-						} else {
+						}
+						else {
 							rStr.Append("<a  id=\"child" + dtChild.Rows[ic]["id"] + "\" href=\"" + dtChild.Rows[ic]["link_url"]);
 						}
 						rStr.Append("?id=" + dtChild.Rows[ic]["id"] + "\"><span>" + dtChild.Rows[ic]["title"].ToString() + "</span></a>");
@@ -281,15 +249,16 @@ namespace  OS.Web.UI {
 						rStr.Append(dt.Rows[i]["title"]);
 						rStr.Append(" </b> <span class=\"arrow up\"></span></a></div>");
 						rStr.Append("<ul class=\"body_int_gk_li_div\" style=\"display: block;\">");
-					} else {
-						rStr.Append(" <li id=\"child" + dt.Rows[i]["id"] + "\"> <a   href=\"" + dt.Rows[i]["link_url"] + "?id=" + dt.Rows[i]["id"] + "\">");
+					}
+					else {
+						rStr.Append(" <li id=\"child" + dt.Rows[i]["id"] + "\"> <a   href=\"" + dt.Rows[i]["link_url"] + "\">");
 						rStr.Append(dt.Rows[i]["title"]);
 						rStr.Append(" </a>");
 					}
 					int numChild = 1;
 					for (int ic = 0; ic < dtChild.Rows.Count; ic++) {
 						rStr.Append("<li><a  id=\"child" + numChild + "\" href=\"" + dtChild.Rows[ic]["link_url"]);
-						rStr.Append("?id=" + dtChild.Rows[ic]["id"] + "\">" + dtChild.Rows[ic]["title"].ToString() + "</a></li>");
+						rStr.Append("\">" + dtChild.Rows[ic]["title"].ToString() + "</a></li>");
 						numChild++;
 					}
 					if (dtChild.Rows.Count > 0) {
@@ -323,7 +292,8 @@ namespace  OS.Web.UI {
 						rStr.Append(dt.Rows[i]["title"]);
 						rStr.Append(" </b> <span class=\"arrow up\"></span></a></div>");
 						rStr.Append("<ul class=\"body_int_gk_li_div\" style=\"display: block;\">");
-					} else {
+					}
+					else {
 						rStr.Append(" <li " + classStr + " id=\"child" + dt.Rows[i]["id"] + "\"> <a   href=\"" + dt.Rows[i]["link_url"] + "?id=" + dt.Rows[i]["id"] + "\">");
 						rStr.Append(dt.Rows[i]["title"]);
 						rStr.Append(" </a>");
@@ -354,7 +324,7 @@ namespace  OS.Web.UI {
 			if (dt != null && dt.Rows.Count > 0) {
 				int num = 1;
 				for (int i = 0; i < dt.Rows.Count; i++) {
-					rStr.Append(" <li id=\"menu" + num + "\"><a href=\"" + dt.Rows[i]["link_url"] + "\">");
+					rStr.Append(" <li><a id=\"menu" + dt.Rows[i]["id"] + "\" class=\"\"  href=\"" + dt.Rows[i]["link_url"] + "\">");
 					rStr.Append(dt.Rows[i]["title"]);
 					rStr.Append("</a></li>");
 				}
@@ -469,15 +439,18 @@ namespace  OS.Web.UI {
 						rStr.Append(dt.Rows[i]["title"].ToString());
 						rStr.Append("</a>");
 						rStr.Append("</li>");
-					} else {
+					}
+					else {
 						if (i == 3) {
 							rStr.Append("<li><a id=\"a\" href=\"#\">更多</a></li>");
 							rStr.Append("  <ul id=\"ul1\" class=\"dis\">");
 							rStr.Append(" <li><a href=\"" + dt.Rows[i]["link_url"] + "?fId=" + dt.Rows[i]["parent_id"] + "&cId=" + dt.Rows[i]["id"] + "\">" + dt.Rows[i]["title"] + "</a></li>");
-						} else if (i == dt.Rows.Count - 1) {
+						}
+						else if (i == dt.Rows.Count - 1) {
 							rStr.Append("<li><a href=\"" + dt.Rows[i]["link_url"] + "?fId=" + dt.Rows[i]["parent_id"] + "&cId=" + dt.Rows[i]["id"] + "\">" + dt.Rows[i]["title"] + "</a></li>");
 							rStr.Append("</ul>");
-						} else {
+						}
+						else {
 							rStr.Append("<li><a href=\"" + dt.Rows[i]["link_url"] + "?fId=" + dt.Rows[i]["parent_id"] + "&cId=" + dt.Rows[i]["id"] + "\">" + dt.Rows[i]["title"] + "</a></li>");
 						}
 
@@ -586,6 +559,15 @@ namespace  OS.Web.UI {
 			}
 			return rStr;
 		}
+		public static string GetArticleNameUrl(int id) {
+			string rStr = "";
+			BLL.contents.article bll = new BLL.contents.article();
+			DataSet ds = bll.GetList(1, " category_id=" + id, "sort_id,add_time");
+			if (ds != null && ds.Tables[0] != null && ds.Tables[0].Rows.Count > 0) {
+				rStr += ds.Tables[0].Rows[0]["img_url"].ToString();
+			}
+			return rStr;
+		}
 		/// <summary>
 		/// 加载摘要
 		/// </summary>
@@ -598,7 +580,8 @@ namespace  OS.Web.UI {
 			if (ds != null && ds.Tables[0] != null && ds.Tables[0].Rows.Count > 0) {
 				if (ds.Tables[0].Rows[0]["zhaiyao"].ToString().Length > count) {
 					rStr += rStr.Substring(0, count) + "...";
-				} else {
+				}
+				else {
 					rStr += ds.Tables[0].Rows[0]["zhaiyao"].ToString();
 				}
 			}

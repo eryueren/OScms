@@ -18,13 +18,13 @@ namespace OS.Web.admin
                 if (admin_info != null)
                 {
                     BLL.managers.manager_log bll = new BLL.managers.manager_log();
-                    Model.managers.manager_log model1 = bll.GetModel(admin_info.user_name, 1, YLEnums.ActionEnum.Login.ToString());
+                    Model.managers.manager_log model1 = bll.GetModel(admin_info.user_name, 1, OSEnums.ActionEnum.Login.ToString());
                     if (model1 != null)
                     {
                         //本次登录
                         litIP.Text = model1.user_ip;
                     }
-                    Model.managers.manager_log model2 = bll.GetModel(admin_info.user_name, 2, YLEnums.ActionEnum.Login.ToString());
+                    Model.managers.manager_log model2 = bll.GetModel(admin_info.user_name, 2, OSEnums.ActionEnum.Login.ToString());
                     if (model2 != null)
                     {
                         //上一次登录

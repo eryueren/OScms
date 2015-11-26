@@ -85,7 +85,7 @@
             <div id="floatHead" class="toolbar">
                 <div class="l-list">
                     <ul class="icon-list">
-                        <li><a class="add" href="article_edit.aspx?action=<%=YLEnums.ActionEnum.Add %>&category_id=<%=this.category_id %>"><i></i><span>新增</span></a></li>
+                        <li><a class="add" href="article_edit.aspx?action=<%=OSEnums.ActionEnum.Add %>&category_id=<%=this.category_id %>"><i></i><span>新增</span></a></li>
                         <li>
                             <asp:LinkButton ID="btnSave" runat="server" CssClass="save" OnClick="btnSave_Click"><i></i><span>保存</span></asp:LinkButton></li>
                         <li><a class="all" href="javascript:;" onclick="checkAll(this);"><i></i><span>全选</span></a></li>
@@ -99,7 +99,7 @@
                                 <asp:ListItem Value="" Selected="True">所有属性</asp:ListItem>
                                 <%--<asp:ListItem Value="isMsg">允许评论</asp:ListItem>--%>
                                 <asp:ListItem Value="isTop">置顶</asp:ListItem>
-                                <asp:ListItem Value="isRed">推荐</asp:ListItem>
+                                <asp:ListItem Value="isRed">首页</asp:ListItem>
                                 <%--<asp:ListItem Value="isHot">热门</asp:ListItem>--%>
                                 <%--<asp:ListItem Value="isSlide">幻灯片</asp:ListItem>--%>
                             </asp:DropDownList>
@@ -135,7 +135,7 @@
                     <td align="center">
                         <asp:CheckBox ID="chkId" CssClass="checkall" runat="server" Style="vertical-align: middle;" /><asp:HiddenField ID="hidId" Value='<%#Eval("id")%>' runat="server" />
                     </td>
-                    <td><a href="article_edit.aspx?action=<%#YLEnums.ActionEnum.Edit %>&category_id=<%#this.category_id %>&id=<%#Eval("id")%>"><%#Eval("title")%></a></td>
+                    <td><a href="article_edit.aspx?action=<%#OSEnums.ActionEnum.Edit %>&category_id=<%#this.category_id %>&id=<%#Eval("id")%>"><%#Eval("title")%></a></td>
                     <td><%#string.Format("{0:g}",Eval("add_time"))%></td>
                     <td><%#new OS.BLL.contents.article_category().GetTitle(Convert.ToInt32(Eval("category_id")))%></td>
                     <td <%=this.category_id==128||this.category_id==96||this.category_id==122?"style='display:none'":"" %>>
@@ -144,12 +144,12 @@
                         <div class="btn-tools">
                             <%--   <asp:LinkButton ID="lbtnIsMsg" CommandName="lbtnIsMsg" runat="server" CssClass='<%# Convert.ToInt32(Eval("is_msg")) == 1 ? "msg selected" : "msg"%>' ToolTip='<%# Convert.ToInt32(Eval("is_msg")) == 1 ? "取消评论" : "设置评论"%>' />--%>
                             <asp:LinkButton ID="lbtnIsTop" CommandName="lbtnIsTop" runat="server" CssClass='<%# Convert.ToInt32(Eval("is_top")) == 1 ? "top selected" : "top"%>' ToolTip='<%# Convert.ToInt32(Eval("is_top")) == 1 ? "取消置顶" : "设置置顶"%>' />
-                            <asp:LinkButton ID="lbtnIsRed" CommandName="lbtnIsRed" runat="server" CssClass='<%# Convert.ToInt32(Eval("is_red")) == 1 ? "red selected" : "red"%>' ToolTip='<%# Convert.ToInt32(Eval("is_red")) == 1 ? "取消推荐" : "设置推荐"%>' />
+                            <asp:LinkButton ID="lbtnIsRed" CommandName="lbtnIsRed" runat="server" CssClass='<%# Convert.ToInt32(Eval("is_red")) == 1 ? "red selected" : "red"%>' ToolTip='<%# Convert.ToInt32(Eval("is_red")) == 1 ? "取消首页" : "设置首页"%>' />
                             <%--                            <asp:LinkButton ID="lbtnIsHot" CommandName="lbtnIsHot" runat="server" CssClass='<%# Convert.ToInt32(Eval("is_hot")) == 1 ? "hot selected" : "hot"%>' ToolTip='<%# Convert.ToInt32(Eval("is_hot")) == 1 ? "取消热门" : "设置热门"%>' />
                             <asp:LinkButton ID="lbtnIsSlide" CommandName="lbtnIsSlide" runat="server" CssClass='<%# Convert.ToInt32(Eval("is_slide")) == 1 ? "pic selected" : "pic"%>' ToolTip='<%# Convert.ToInt32(Eval("is_slide")) == 1 ? "取消幻灯片" : "设置幻灯片"%>' />--%>
                         </div>
                     </td>
-                    <td align="center"><a href="article_edit.aspx?action=<%#YLEnums.ActionEnum.Edit %>&category_id=<%#this.category_id %>&id=<%#Eval("id")%>">修改</a></td>
+                    <td align="center"><a href="article_edit.aspx?action=<%#OSEnums.ActionEnum.Edit %>&category_id=<%#this.category_id %>&id=<%#Eval("id")%>">修改</a></td>
                 </tr>
             </ItemTemplate>
             <FooterTemplate>
@@ -172,21 +172,21 @@
                             <asp:CheckBox ID="chkId" CssClass="checkall" runat="server" /><asp:HiddenField ID="hidId" Value='<%#Eval("id")%>' runat="server" />
                         </div>
                         <%#Eval("img_url").ToString() != "" ? "<div class=\"pic\"><img src=\"../css/default/loadimg.gif\" data-original=\"" + Eval("img_url") + "\" /></div><i class=\"absbg\"></i>" : ""%>
-                        <h1><span><a href="article_edit.aspx?action=<%#YLEnums.ActionEnum.Edit %>&category_id=<%#this.category_id %>&id=<%#Eval("id")%>"><%#Eval("title")%></a></span></h1>
+                        <h1><span><a href="article_edit.aspx?action=<%#OSEnums.ActionEnum.Edit %>&category_id=<%#this.category_id %>&id=<%#Eval("id")%>"><%#Eval("title")%></a></span></h1>
                         <div class="remark">
                             <%#Eval("zhaiyao").ToString() == "" ? "暂无内容摘要说明..." : Eval("zhaiyao").ToString()%>
                         </div>
                         <div class="tools">
                             <%--<asp:LinkButton ID="lbtnIsMsg" CommandName="lbtnIsMsg" runat="server" CssClass='<%# Convert.ToInt32(Eval("is_msg")) == 1 ? "msg selected" : "msg"%>' ToolTip='<%# Convert.ToInt32(Eval("is_msg")) == 1 ? "取消评论" : "设置评论"%>' />--%>
                             <asp:LinkButton ID="lbtnIsTop" CommandName="lbtnIsTop" runat="server" CssClass='<%# Convert.ToInt32(Eval("is_top")) == 1 ? "top selected" : "top"%>' ToolTip='<%# Convert.ToInt32(Eval("is_top")) == 1 ? "取消置顶" : "设置置顶"%>' />
-                            <asp:LinkButton ID="lbtnIsRed" CommandName="lbtnIsRed" runat="server" CssClass='<%# Convert.ToInt32(Eval("is_red")) == 1 ? "red selected" : "red"%>' ToolTip='<%# Convert.ToInt32(Eval("is_red")) == 1 ? "取消推荐" : "设置推荐"%>' />
+                            <asp:LinkButton ID="lbtnIsRed" CommandName="lbtnIsRed" runat="server" CssClass='<%# Convert.ToInt32(Eval("is_red")) == 1 ? "red selected" : "red"%>' ToolTip='<%# Convert.ToInt32(Eval("is_red")) == 1 ? "取消首页" : "设置首页"%>' />
                             <%--                            <asp:LinkButton ID="lbtnIsHot" CommandName="lbtnIsHot" runat="server" CssClass='<%# Convert.ToInt32(Eval("is_hot")) == 1 ? "hot selected" : "hot"%>' ToolTip='<%# Convert.ToInt32(Eval("is_hot")) == 1 ? "取消热门" : "设置热门"%>' />
                             <asp:LinkButton ID="lbtnIsSlide" CommandName="lbtnIsSlide" runat="server" CssClass='<%# Convert.ToInt32(Eval("is_slide")) == 1 ? "pic selected" : "pic"%>' ToolTip='<%# Convert.ToInt32(Eval("is_slide")) == 1 ? "取消幻灯片" : "设置幻灯片"%>' />--%>
                             <asp:TextBox ID="txtSortId" runat="server" Text='<%#Eval("sort_id")%>' CssClass="sort" onkeypress="return (/[\d]/.test(String.fromCharCode(event.keyCode)));" />
                         </div>
                         <div class="foot">
                             <p class="time"><%#string.Format("{0:yyyy-MM-dd HH:mm:ss}", Eval("add_time"))%></p>
-                            <a href="article_edit.aspx?action=<%#YLEnums.ActionEnum.Edit %>&category_id=<%#this.category_id %>&id=<%#Eval("id")%>" title="编辑" class="edit">编辑</a>
+                            <a href="article_edit.aspx?action=<%#OSEnums.ActionEnum.Edit %>&category_id=<%#this.category_id %>&id=<%#Eval("id")%>" title="编辑" class="edit">编辑</a>
                         </div>
                     </div>
                 </li>

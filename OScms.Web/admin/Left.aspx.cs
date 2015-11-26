@@ -18,7 +18,7 @@ namespace OS.Web.Admin
 {
     public partial class Left : ManagePage
     {
-        protected int type = YLRequest.GetInt("type", 1);
+        protected int type = OSRequest.GetInt("type", 1);
         BLL.contents.article_category bll = new BLL.contents.article_category();
         Model.contents.article_category model = new Model.contents.article_category();
         protected string className = "";

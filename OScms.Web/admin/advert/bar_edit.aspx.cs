@@ -11,18 +11,18 @@ namespace OS.Web.manage.advert
 {
     public partial class bar_edit : OS.Web.UI.ManagePage
     {
-        private string action = YLEnums.ActionEnum.Add.ToString(); //操作类型
+        private string action = OSEnums.ActionEnum.Add.ToString(); //操作类型
         protected int aid = 0; //广告位ID
         protected int id = 0;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            string _action = YLRequest.GetQueryString("action");
+            string _action = OSRequest.GetQueryString("action");
             
-            if (!string.IsNullOrEmpty(_action) && _action == YLEnums.ActionEnum.Edit.ToString())
+            if (!string.IsNullOrEmpty(_action) && _action == OSEnums.ActionEnum.Edit.ToString())
             {
-                this.action = YLEnums.ActionEnum.Edit.ToString();//修改类型
-                this.id = YLRequest.GetQueryInt("id");
+                this.action = OSEnums.ActionEnum.Edit.ToString();//修改类型
+                this.id = OSRequest.GetQueryInt("id");
                 if (this.id == 0)
                 {
                     PageErrorMsg("传输参数不正确");
@@ -34,13 +34,13 @@ namespace OS.Web.manage.advert
             }
             else
             {
-                this.aid = YLRequest.GetQueryInt("aid");
+                this.aid = OSRequest.GetQueryInt("aid");
             }
             if (!Page.IsPostBack)
             {
-                ChkAdminLevel("advert", YLEnums.ActionEnum.View.ToString()); //检查权限
+                ChkAdminLevel("advert", OSEnums.ActionEnum.View.ToString()); //检查权限
                 TreeBind(); //绑定广告位
-                if (action == YLEnums.ActionEnum.Edit.ToString()) //修改
+                if (action == OSEnums.ActionEnum.Edit.ToString()) //修改
                 {
                     ShowInfo(this.id);
                 }
@@ -106,7 +106,7 @@ namespace OS.Web.manage.advert
 
             if (bll.Add(model) > 0)
             {
-                AddAdminLog(YLEnums.ActionEnum.Add.ToString(), "添加广告内容：" + model.title); //记录日志
+                AddAdminLog(OSEnums.ActionEnum.Add.ToString(), "添加广告内容：" + model.title); //记录日志
                 result = true;
             }
             return result;
@@ -133,7 +133,7 @@ namespace OS.Web.manage.advert
 
             if (bll.Update(model))
             {
-                AddAdminLog(YLEnums.ActionEnum.Edit.ToString(), "修改广告内容：" + model.title); //记录日志
+                AddAdminLog(OSEnums.ActionEnum.Edit.ToString(), "修改广告内容：" + model.title); //记录日志
                 result = true;
             }
 
@@ -144,9 +144,9 @@ namespace OS.Web.manage.advert
         //保存
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            if (action == YLEnums.ActionEnum.Edit.ToString()) //修改
+            if (action == OSEnums.ActionEnum.Edit.ToString()) //修改
             {
-                ChkAdminLevel("advert", YLEnums.ActionEnum.Edit.ToString()); //检查权限
+                ChkAdminLevel("advert", OSEnums.ActionEnum.Edit.ToString()); //检查权限
                 if (!DoEdit(this.id))
                 {
                     JscriptMsg("保存过程中发生错误啦！", "", "Error");
@@ -156,7 +156,7 @@ namespace OS.Web.manage.advert
             }
             else //添加
             {
-                ChkAdminLevel("advert", YLEnums.ActionEnum.Add.ToString()); //检查权限
+                ChkAdminLevel("advert", OSEnums.ActionEnum.Add.ToString()); //检查权限
                 if (!DoAdd())
                 {
                     PageErrorMsg("保存过程中发生错误啦");

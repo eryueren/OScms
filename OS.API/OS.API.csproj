@@ -43,13 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AliPay.cs" />
-    <Compile Include="OAuth\feixin_helper.cs" />
-    <Compile Include="OAuth\kaixin_helper.cs" />
     <Compile Include="OAuth\oauth_config.cs" />
     <Compile Include="OAuth\oauth_helper.cs" />
     <Compile Include="OAuth\qq_helper.cs" />
-    <Compile Include="OAuth\renren_helper.cs" />
     <Compile Include="OAuth\sina_helper.cs" />
     <Compile Include="OAuth\taobao_helper.cs" />
     <Compile Include="Payment\Alipay\AlipayConfig.cs" />

@@ -20,11 +20,11 @@ namespace OS.Web.admin.manager
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            this.keywords = YLRequest.GetQueryString("keywords");
+            this.keywords = OSRequest.GetQueryString("keywords");
             this.pageSize = GetPageSize(10); //每页数量
             if (!Page.IsPostBack)
             {
-                ChkAdminLevel("manager_log", YLEnums.ActionEnum.View.ToString()); //检查权限
+                ChkAdminLevel("manager_log", OSEnums.ActionEnum.View.ToString()); //检查权限
                 model = GetAdminInfo(); //取得当前管理员信息
                 RptBind("id>0" + CombSqlTxt(keywords), "add_time desc,id desc");
             }
@@ -47,7 +47,7 @@ namespace OS.Web.admin.manager
         #region 数据绑定=================================
         private void RptBind(string _strWhere, string _orderby)
         {
-            this.page = YLRequest.GetQueryInt("page", 1);
+            this.page = OSRequest.GetQueryInt("page", 1);
             txtKeywords.Text = this.keywords;
             BLL.managers.manager_log bll = new BLL.managers.manager_log();
             this.rptList.DataSource = bll.GetList(this.pageSize, this.page, _strWhere, _orderby, out this.totalCount);
@@ -98,10 +98,10 @@ namespace OS.Web.admin.manager
         //批量删除
         protected void btnDelete_Click(object sender, EventArgs e)
         {
-            ChkAdminLevel("manager_log", YLEnums.ActionEnum.Delete.ToString()); //检查权限
+            ChkAdminLevel("manager_log", OSEnums.ActionEnum.Delete.ToString()); //检查权限
             BLL.managers.manager_log bll = new BLL.managers.manager_log();
             int sucCount = bll.Delete(7);
-            AddAdminLog(YLEnums.ActionEnum.Delete.ToString(), "删除管理日志" + sucCount + "条"); //记录日志
+            AddAdminLog(OSEnums.ActionEnum.Delete.ToString(), "删除管理日志" + sucCount + "条"); //记录日志
             Response.Redirect(Utils.CombUrlTxt("manager_log.aspx", "keywords={0}", this.keywords));
           
         }

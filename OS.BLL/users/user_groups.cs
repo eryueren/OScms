@@ -52,13 +52,6 @@ namespace OS.BLL.users
             return dal.Update(model);
         }
 
-        /// <summary>
-        /// 删除一条数据
-        /// </summary>
-        public bool Delete(int id)
-        {
-            return dal.Delete(id);
-        }
 
         /// <summary>
         /// 得到一个对象实体

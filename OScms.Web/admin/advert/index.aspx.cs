@@ -20,12 +20,12 @@ namespace OS.Web.manage.advert
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            this.keywords = YLRequest.GetQueryString("keywords");
-            this.property = YLRequest.GetQueryString("property");
+            this.keywords = OSRequest.GetQueryString("keywords");
+            this.property = OSRequest.GetQueryString("property");
             this.pageSize = GetPageSize(10); //每页数量
             if (!Page.IsPostBack)
             {
-                ChkAdminLevel("advert", YLEnums.ActionEnum.View.ToString()); //检查权限
+                ChkAdminLevel("advert", OSEnums.ActionEnum.View.ToString()); //检查权限
                 RptBind("id>0" + CombSqlTxt(this.keywords, this.property), "add_time desc");
             }
         }
@@ -33,7 +33,7 @@ namespace OS.Web.manage.advert
         #region 数据绑定=================================
         private void RptBind(string _strWhere, string _orderby)
         {
-            this.page = YLRequest.GetQueryInt("page", 1);
+            this.page = OSRequest.GetQueryInt("page", 1);
             this.txtKeywords.Text = this.keywords;
             this.ddlProperty.SelectedValue = this.property;
             BLL.plugins.advert bll = new BLL.plugins.advert();
@@ -130,7 +130,7 @@ namespace OS.Web.manage.advert
         //批量删除
         protected void btnDelete_Click(object sender, EventArgs e)
         {
-            ChkAdminLevel("advert", YLEnums.ActionEnum.Delete.ToString()); //检查权限
+            ChkAdminLevel("advert", OSEnums.ActionEnum.Delete.ToString()); //检查权限
             int sucCount = 0;
             int errorCount = 0;
             BLL.plugins.advert bll = new BLL.plugins.advert();
@@ -150,7 +150,7 @@ namespace OS.Web.manage.advert
                     }
                 }
             }
-            AddAdminLog(YLEnums.ActionEnum.Delete.ToString(), "删除广告位成功" + sucCount + "条，失败" + errorCount + "条"); //记录日志
+            AddAdminLog(OSEnums.ActionEnum.Delete.ToString(), "删除广告位成功" + sucCount + "条，失败" + errorCount + "条"); //记录日志
             JscriptMsg("删除成功" + sucCount + "条，失败" + errorCount + "条！",
              Utils.CombUrlTxt("index.aspx", "keywords={0}&&property={1}", this.keywords, this.property), "Success");
         }

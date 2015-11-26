@@ -62,10 +62,10 @@
   <tr>
     <td align="center"><asp:CheckBox ID="chkId" CssClass="checkall" runat="server" style="vertical-align:middle;" /><asp:HiddenField ID="hidId" Value='<%#Eval("id")%>' runat="server" /></td>
        <td><%# menus(Convert.ToInt32(Eval("category_id")))%></td>
-    <td><a href="article_edit.aspx?action=<%#YLEnums.ActionEnum.Edit %>&category_id=<%# Eval("category_id") %>&id=<%#Eval("id")%>"><%#Eval("title")%></a></td>
+    <td><a href="article_edit.aspx?action=<%#OSEnums.ActionEnum.Edit %>&category_id=<%# Eval("category_id") %>&id=<%#Eval("id")%>"><%#Eval("title")%></a></td>
 
     <td><%#string.Format("{0:g}",Eval("add_time"))%></td>
-    <td align="center"><a href="article_edit.aspx?action=<%#YLEnums.ActionEnum.Edit %>&category_id=<%# Eval("category_id") %>&id=<%#Eval("id")%>">修改</a></td>
+    <td align="center"><a href="article_edit.aspx?action=<%#OSEnums.ActionEnum.Edit %>&category_id=<%# Eval("category_id") %>&id=<%#Eval("id")%>">修改</a></td>
   </tr>
 </ItemTemplate>
 <FooterTemplate>

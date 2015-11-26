@@ -11,14 +11,14 @@ namespace OS.Web.admin.manager
     public partial class manager_edit : Web.UI.ManagePage
     {
         string defaultpassword = "0|0|0|0"; //默认显示密码
-        private string action = YLEnums.ActionEnum.Add.ToString(); //操作类型
-        protected int id = YLRequest.GetQueryInt("id");
+        private string action = OSEnums.ActionEnum.Add.ToString(); //操作类型
+        protected int id = OSRequest.GetQueryInt("id");
         protected void Page_Load(object sender, EventArgs e)
         {
-            string _action = YLRequest.GetQueryString("action");
-            if (!string.IsNullOrEmpty(_action) && _action == YLEnums.ActionEnum.Edit.ToString())
+            string _action = OSRequest.GetQueryString("action");
+            if (!string.IsNullOrEmpty(_action) && _action == OSEnums.ActionEnum.Edit.ToString())
             {
-                this.action = YLEnums.ActionEnum.Edit.ToString();//修改类型
+                this.action = OSEnums.ActionEnum.Edit.ToString();//修改类型
                 if (this.id==0)
                 {
                     PageErrorMsg("传输参数不正确");
@@ -31,10 +31,10 @@ namespace OS.Web.admin.manager
             }
             if (!Page.IsPostBack)
             {
-                ChkAdminLevel("manager", YLEnums.ActionEnum.View.ToString()); //检查权限
+                ChkAdminLevel("manager", OSEnums.ActionEnum.View.ToString()); //检查权限
                 Model.managers.manager model = GetAdminInfo(); //取得管理员信息
                 RoleBind(ddlRoleId, model.role_type);
-                if (action == YLEnums.ActionEnum.Edit.ToString()) //修改
+                if (action == OSEnums.ActionEnum.Edit.ToString()) //修改
                 {
                     ShowInfo(this.id);
                 }
@@ -118,7 +118,7 @@ namespace OS.Web.admin.manager
 
             if (bll.Add(model) > 0)
             {
-                AddAdminLog(YLEnums.ActionEnum.Add.ToString(), "添加管理员:" + model.user_name); //记录日志
+                AddAdminLog(OSEnums.ActionEnum.Add.ToString(), "添加管理员:" + model.user_name); //记录日志
                 return true;
             }
             return false;
@@ -154,7 +154,7 @@ namespace OS.Web.admin.manager
 
             if (bll.Update(model))
             {
-                AddAdminLog(YLEnums.ActionEnum.Edit.ToString(), "修改管理员:" + model.user_name); //记录日志
+                AddAdminLog(OSEnums.ActionEnum.Edit.ToString(), "修改管理员:" + model.user_name); //记录日志
                 result = true;
             }
 
@@ -165,9 +165,9 @@ namespace OS.Web.admin.manager
         //保存
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            if (action == YLEnums.ActionEnum.Edit.ToString()) //修改
+            if (action == OSEnums.ActionEnum.Edit.ToString()) //修改
             {
-                ChkAdminLevel("manager", YLEnums.ActionEnum.Edit.ToString()); //检查权限
+                ChkAdminLevel("manager", OSEnums.ActionEnum.Edit.ToString()); //检查权限
                 if (!DoEdit(this.id))
                 {
                     PageErrorMsg("保存过程中发生错误啦");
@@ -176,7 +176,7 @@ namespace OS.Web.admin.manager
             }
             else //添加
             {
-                ChkAdminLevel("manager", YLEnums.ActionEnum.Add.ToString()); //检查权限
+                ChkAdminLevel("manager", OSEnums.ActionEnum.Add.ToString()); //检查权限
                 if (!DoAdd())
                 {
                     PageErrorMsg("保存过程中发生错误啦");

@@ -49,6 +49,15 @@ namespace OS.Web.admin.article {
         protected global::System.Web.UI.WebControls.CheckBoxList cblItem;
         
         /// <summary>
+        /// txtSortId 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSortId;
+        
+        /// <summary>
         /// txtTitle 控件。
         /// </summary>
         /// <remarks>
@@ -326,15 +335,6 @@ namespace OS.Web.admin.article {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label div_point_tip;
-        
-        /// <summary>
-        /// txtSortId 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSortId;
         
         /// <summary>
         /// txtClick 控件。

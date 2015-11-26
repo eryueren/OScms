@@ -19,12 +19,12 @@ namespace OS.Web.admin.manager
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            this.keywords = YLRequest.GetQueryString("keywords");
+            this.keywords = OSRequest.GetQueryString("keywords");
 
             this.pageSize = GetPageSize(10); //每页数量
             if (!Page.IsPostBack)
             {
-                ChkAdminLevel("manager", YLEnums.ActionEnum.View.ToString()); //检查权限
+                ChkAdminLevel("manager", OSEnums.ActionEnum.View.ToString()); //检查权限
                 Model.managers.manager model = GetAdminInfo(); //取得当前管理员信息
                 RptBind("role_type>=" + model.role_type + CombSqlTxt(keywords), "add_time asc,id desc");
             }
@@ -33,7 +33,7 @@ namespace OS.Web.admin.manager
         #region 数据绑定=================================
         private void RptBind(string _strWhere, string _orderby)
         {
-            this.page = YLRequest.GetQueryInt("page", 1);
+            this.page = OSRequest.GetQueryInt("page", 1);
             txtKeywords.Text = this.keywords;
             BLL.managers.manager bll = new BLL.managers.manager();
             this.rptList.DataSource = bll.GetList(this.pageSize, this.page, _strWhere, _orderby, out this.totalCount);
@@ -98,7 +98,7 @@ namespace OS.Web.admin.manager
         //批量删除
         protected void btnDelete_Click(object sender, EventArgs e)
         {
-            ChkAdminLevel("manager", YLEnums.ActionEnum.Delete.ToString()); //检查权限
+            ChkAdminLevel("manager", OSEnums.ActionEnum.Delete.ToString()); //检查权限
             int sucCount = 0;
             int errorCount = 0;
             BLL.managers.manager bll = new BLL.managers.manager();
@@ -118,7 +118,7 @@ namespace OS.Web.admin.manager
                     }
                 }
             }
-            AddAdminLog(YLEnums.ActionEnum.Delete.ToString(), "删除管理员" + sucCount + "条，失败" + errorCount + "条"); //记录日志
+            AddAdminLog(OSEnums.ActionEnum.Delete.ToString(), "删除管理员" + sucCount + "条，失败" + errorCount + "条"); //记录日志
             Response.Redirect(Utils.CombUrlTxt("manager_list.aspx", "keywords={0}", this.keywords));
         }
     }

@@ -10,7 +10,7 @@ namespace OS.Web.admin.dialog
 {
     public partial class dialog_progressBar : Web.UI.ManagePage
     {
-        private int category_id = YLRequest.GetInt("category_id",-2);
+        private int category_id = OSRequest.GetInt("category_id",-2);
       
         protected void Page_Load(object sender, EventArgs e)
         {

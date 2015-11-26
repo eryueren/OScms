@@ -44,7 +44,6 @@
     <Compile Include="configs\urls_config.cs" />
     <Compile Include="configs\url_rewrite.cs" />
     <Compile Include="configs\user_config.cs" />
-    <Compile Include="configs\yl_temp.cs" />
     <Compile Include="contents\article.cs" />
     <Compile Include="contents\article_albums.cs" />
     <Compile Include="contents\article_attach.cs" />
@@ -66,40 +65,13 @@
     <Compile Include="users\user_amount_log.cs" />
     <Compile Include="users\user_code.cs" />
     <Compile Include="users\user_groups.cs" />
-    <Compile Include="users\user_group_price.cs" />
     <Compile Include="users\user_login_log.cs" />
     <Compile Include="users\user_message.cs" />
     <Compile Include="users\user_oauth.cs" />
     <Compile Include="users\user_oauth_app.cs" />
     <Compile Include="users\user_point_log.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="bin\Debug\OS.Model.dll" />
-    <Content Include="bin\Debug\OS.Model.pdb" />
-    <Content Include="bin\Debug\YL.Model.dll" />
-    <Content Include="bin\Debug\YL.Model.pdb" />
-    <Content Include="bin\Release\YL.Model.dll" />
-    <Content Include="bin\Release\YL.Model.pdb" />
-    <Content Include="obj\Debug\OS.Model.csproj.FileListAbsolute.txt" />
-    <Content Include="obj\Debug\OS.Model.dll" />
-    <Content Include="obj\Debug\OS.Model.pdb" />
-    <Content Include="obj\Debug\YL.Model.csproj.FileListAbsolute.txt" />
-    <Content Include="obj\Debug\YL.Model.dll" />
-    <Content Include="obj\Debug\YL.Model.pdb" />
-    <Content Include="obj\Release\YL.Model.csproj.FileListAbsolute.txt" />
-    <Content Include="obj\Release\YL.Model.dll" />
-    <Content Include="obj\Release\YL.Model.pdb" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
-    <None Include="obj\Release\DesignTimeResolveAssemblyReferencesInput.cache" />
-    <None Include="obj\Release\YL.Model.csprojResolveAssemblyReference.cache" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="channels\" />
-    <Folder Include="obj\Debug\TempPE\" />
-    <Folder Include="obj\Release\TempPE\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

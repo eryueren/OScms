@@ -41,7 +41,7 @@ namespace OS.BLL.managers
             manager_log_model.user_name = user_name;
             manager_log_model.action_type = action_type;
             manager_log_model.remark = remark;
-            manager_log_model.user_ip = YLRequest.GetIP();
+            manager_log_model.user_ip = OSRequest.GetIP();
             return dal.Add(manager_log_model);
         }
 

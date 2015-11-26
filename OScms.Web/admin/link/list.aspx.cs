@@ -19,12 +19,12 @@ namespace OS.Web.manage.link
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            this.keywords = YLRequest.GetQueryString("keywords");
+            this.keywords = OSRequest.GetQueryString("keywords");
 
             this.pageSize = GetPageSize(10); //每页数量
             if (!Page.IsPostBack)
             {
-                ChkAdminLevel("link", YLEnums.ActionEnum.View.ToString()); //检查权限
+                ChkAdminLevel("link", OSEnums.ActionEnum.View.ToString()); //检查权限
                 RptBind("id>0" + CombSqlTxt(this.keywords), "sort_id asc,add_time desc");
             }
         }
@@ -32,7 +32,7 @@ namespace OS.Web.manage.link
         #region 数据绑定=================================
         private void RptBind(string _strWhere, string _orderby)
         {
-            this.page = YLRequest.GetQueryInt("page", 1);
+            this.page = OSRequest.GetQueryInt("page", 1);
             this.txtKeywords.Text = this.keywords;
             BLL.plugins.link bll = new BLL.plugins.link();
             this.rptList.DataSource = bll.GetList(this.pageSize, this.page, _strWhere, _orderby, out this.totalCount);
@@ -75,7 +75,7 @@ namespace OS.Web.manage.link
         //设置操作
         protected void rptList_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
-            ChkAdminLevel("plugin_link", YLEnums.ActionEnum.Edit.ToString()); //检查权限
+            ChkAdminLevel("plugin_link", OSEnums.ActionEnum.Edit.ToString()); //检查权限
             int id = Convert.ToInt32(((HiddenField)e.Item.FindControl("hidId")).Value);
             BLL.plugins.link bll = new BLL.plugins.link();
             Model.plugins.link model = bll.GetModel(id);
@@ -114,7 +114,7 @@ namespace OS.Web.manage.link
         //保存排序
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            ChkAdminLevel("link", YLEnums.ActionEnum.Edit.ToString()); //检查权限
+            ChkAdminLevel("link", OSEnums.ActionEnum.Edit.ToString()); //检查权限
             BLL.plugins.link bll = new BLL.plugins.link();
             for (int i = 0; i < rptList.Items.Count; i++)
             {
@@ -126,7 +126,7 @@ namespace OS.Web.manage.link
                 }
                 bll.UpdateField(id, "sort_id=" + sortId.ToString());
             }
-            AddAdminLog(YLEnums.ActionEnum.Edit.ToString(), "修改友情链接插件排序:"); //记录日志
+            AddAdminLog(OSEnums.ActionEnum.Edit.ToString(), "修改友情链接插件排序:"); //记录日志
             Response.Redirect(Utils.CombUrlTxt("list.aspx", "keywords={0}", this.keywords));
         
         }
@@ -134,7 +134,7 @@ namespace OS.Web.manage.link
         //批量审核
         protected void lbtnUnLock_Click(object sender, EventArgs e)
         {
-            ChkAdminLevel("link", YLEnums.ActionEnum.Audit.ToString()); //检查权限
+            ChkAdminLevel("link", OSEnums.ActionEnum.Audit.ToString()); //检查权限
             BLL.plugins.link bll = new BLL.plugins.link();
             for (int i = 0; i < rptList.Items.Count; i++)
             {
@@ -145,14 +145,14 @@ namespace OS.Web.manage.link
                     bll.UpdateField(id, "is_lock=0");
                 }
             }
-            AddAdminLog(YLEnums.ActionEnum.Audit.ToString(), "审核友情链接"); //记录日志
+            AddAdminLog(OSEnums.ActionEnum.Audit.ToString(), "审核友情链接"); //记录日志
             Response.Redirect(Utils.CombUrlTxt("list.aspx", "keywords={0}", this.keywords));
         }
 
         //批量删除
         protected void btnDelete_Click(object sender, EventArgs e)
         {
-            ChkAdminLevel("link", YLEnums.ActionEnum.Delete.ToString()); //检查权限
+            ChkAdminLevel("link", OSEnums.ActionEnum.Delete.ToString()); //检查权限
             int sucCount = 0;
             int errorCount = 0;
             BLL.plugins.link bll = new BLL.plugins.link();
@@ -172,7 +172,7 @@ namespace OS.Web.manage.link
                     }
                 }
             }
-            AddAdminLog(YLEnums.ActionEnum.Delete.ToString(), "删除友情链接成功" + sucCount + "条，失败" + errorCount + "条"); //记录日志
+            AddAdminLog(OSEnums.ActionEnum.Delete.ToString(), "删除友情链接成功" + sucCount + "条，失败" + errorCount + "条"); //记录日志
             Response.Redirect(Utils.CombUrlTxt("list.aspx", "keywords={0}", this.keywords));
         }
 

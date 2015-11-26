@@ -20,9 +20,9 @@ namespace OS.Web.admin.users
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            ChkAdminLevel("user_list", YLEnums.ActionEnum.View.ToString()); //检查权限
-            this.group_id = YLRequest.GetQueryInt("group_id");
-            this.keywords = YLRequest.GetQueryString("keywords");
+            ChkAdminLevel("user_list", OSEnums.ActionEnum.View.ToString()); //检查权限
+            this.group_id = OSRequest.GetQueryInt("group_id");
+            this.keywords = OSRequest.GetQueryString("keywords");
 
             this.pageSize = GetPageSize(10); //每页数量
             if (!Page.IsPostBack)
@@ -50,7 +50,7 @@ namespace OS.Web.admin.users
         #region 数据绑定=================================
         private void RptBind(string _strWhere, string _orderby)
         {
-            this.page = YLRequest.GetQueryInt("page", 1);
+            this.page = OSRequest.GetQueryInt("page", 1);
             if (this.group_id > 0)
             {
                 this.ddlGroupId.SelectedValue = this.group_id.ToString();
@@ -180,7 +180,7 @@ namespace OS.Web.admin.users
         //批量删除
         protected void btnDelete_Click(object sender, EventArgs e)
         {
-            ChkAdminLevel("user_list", YLEnums.ActionEnum.Delete.ToString()); //检查权限
+            ChkAdminLevel("user_list", OSEnums.ActionEnum.Delete.ToString()); //检查权限
             int sucCount = 0;
             int errorCount = 0;
             BLL.users.users bll = new BLL.users.users();
@@ -200,7 +200,7 @@ namespace OS.Web.admin.users
                     }
                 }
             }
-            AddAdminLog(YLEnums.ActionEnum.Delete.ToString(), "删除用户" + sucCount + "条，失败" + errorCount + "条"); //记录日志
+            AddAdminLog(OSEnums.ActionEnum.Delete.ToString(), "删除用户" + sucCount + "条，失败" + errorCount + "条"); //记录日志
             JscriptMsg("删除成功" + sucCount + "条，失败" + errorCount + "条！",
                 Utils.CombUrlTxt("user_list.aspx", "group_id={0}&keywords={1}", this.group_id.ToString(), this.keywords), "Success");
         }

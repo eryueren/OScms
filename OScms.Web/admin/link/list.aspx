@@ -31,7 +31,7 @@
   <div id="floatHead" class="toolbar">
     <div class="l-list">
       <ul class="icon-list">
-        <li><a class="add" href="link_edit.aspx?action=<%=YLEnums.ActionEnum.Add %>"><i></i><span>新增</span></a></li>
+        <li><a class="add" href="link_edit.aspx?action=<%=OSEnums.ActionEnum.Add %>"><i></i><span>新增</span></a></li>
         <li><a class="all" href="javascript:;" onclick="checkAll(this);"><i></i><span>全选</span></a></li>
         <li><asp:LinkButton ID="btnSave" runat="server" CssClass="save" onclick="btnSave_Click"><i></i><span>保存</span></asp:LinkButton></li>
         <li><asp:LinkButton ID="lbtnUnLock" runat="server" CssClass="folder" OnClientClick="return ExePostBack('lbtnUnLock','审核后前台将显示该信息，确定继续吗？');" onclick="lbtnUnLock_Click"><i></i><span>审核</span></asp:LinkButton></li>
@@ -66,16 +66,16 @@
       <asp:CheckBox ID="chkId" CssClass="checkall" runat="server" style="vertical-align:middle;" />
       <asp:HiddenField ID="hidId" Value='<%#Eval("id")%>' runat="server" />
     </td>
-    <td><a href="link_edit.aspx?action=<%=YLEnums.ActionEnum.Edit %>&id=<%#Eval("id")%>"><%#Eval("title")%><%# Convert.ToInt32(Eval("is_lock")) == 1 ? "(未审核)" : ""%></a></td>
+    <td><a href="link_edit.aspx?action=<%=OSEnums.ActionEnum.Edit %>&id=<%#Eval("id")%>"><%#Eval("title")%><%# Convert.ToInt32(Eval("is_lock")) == 1 ? "(未审核)" : ""%></a></td>
     <td><%# Convert.ToInt32(Eval("is_image")) == 0 ? "文字链接" : "<img src=\"" + Eval("img_url") + "\" width=\"50\" height=\"20\" />"%></td>
     <td><%#string.Format("{0:g}",Eval("add_time"))%></td>
     <td><asp:TextBox ID="txtSortId" runat="server" Text='<%#Eval("sort_id")%>' CssClass="sort" onkeydown="return checkNumber(event);" /></td>
     <td>
       <div class="btn-tools">
-        <asp:LinkButton ID="lbtnIsRed" CommandName="lbtnIsRed" runat="server" CssClass='<%# Convert.ToInt32(Eval("is_red")) == 1 ? "red selected" : "red"%>' ToolTip='<%# Convert.ToInt32(Eval("is_red")) == 1 ? "取消推荐" : "设置推荐"%>' />
+        <asp:LinkButton ID="lbtnIsRed" CommandName="lbtnIsRed" runat="server" CssClass='<%# Convert.ToInt32(Eval("is_red")) == 1 ? "red selected" : "red"%>' ToolTip='<%# Convert.ToInt32(Eval("is_red")) == 1 ? "取消首页" : "设置首页"%>' />
       </div>
     </td>
-    <td align="center"><a href="link_edit.aspx?action=<%#YLEnums.ActionEnum.Edit %>&id=<%#Eval("id")%>">修改</a></td>
+    <td align="center"><a href="link_edit.aspx?action=<%#OSEnums.ActionEnum.Edit %>&id=<%#Eval("id")%>">修改</a></td>
   </tr>
 </ItemTemplate>
 <FooterTemplate>

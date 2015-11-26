@@ -67,7 +67,7 @@
                     </td>
                     <td>
                         <div class="user-box">
-                             <a href="user_edit.aspx?action=<%#YLEnums.ActionEnum.Edit %>&id=<%#Eval("id")%>"><h4><b><%#Eval("user_name")%></b> (昵称：<%#Eval("nick_name")%>)</h4>
+                             <a href="user_edit.aspx?action=<%#OSEnums.ActionEnum.Edit %>&id=<%#Eval("id")%>"><h4><b><%#Eval("user_name")%></b> (昵称：<%#Eval("nick_name")%>)</h4>
                              </a><i>注册时间：<%#string.Format("{0:g}",Eval("reg_time"))%></i>
                             <%--  <span>
           <a class="amount" href="amount_log.aspx?keywords=<%#Eval("user_name")%>" title="消费记录">余额</a>

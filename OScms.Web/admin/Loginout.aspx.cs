@@ -14,9 +14,9 @@ namespace OS.Web.admin
         {
             if (!IsPostBack)
             {
-                Session[YLKeys.SESSION_ADMIN_INFO] = null;
-                Utils.WriteCookie("AdminName", "YL", -14400);
-                Utils.WriteCookie("AdminPwd", "YL", -14400);
+                Session[OSKeys.SESSION_ADMIN_INFO] = null;
+				Utils.WriteCookie("AdminName", "OS", -14400);
+				Utils.WriteCookie("AdminPwd", "OS", -14400);
                 Response.Redirect("login.aspx");
             }
         }

@@ -9,17 +9,17 @@ namespace OS.Web.admin.settings
 {
     public partial class mail_template_edit : Web.UI.ManagePage
     {
-        private string action = YLEnums.ActionEnum.Add.ToString(); //操作类型
+        private string action = OSEnums.ActionEnum.Add.ToString(); //操作类型
         private int id = 0;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            string _action = YLRequest.GetQueryString("action");
+            string _action = OSRequest.GetQueryString("action");
 
-            if (!string.IsNullOrEmpty(_action) && _action == YLEnums.ActionEnum.Edit.ToString())
+            if (!string.IsNullOrEmpty(_action) && _action == OSEnums.ActionEnum.Edit.ToString())
             {
-                this.action = YLEnums.ActionEnum.Edit.ToString();//修改类型
-                this.id = YLRequest.GetQueryInt("id");
+                this.action = OSEnums.ActionEnum.Edit.ToString();//修改类型
+                this.id = OSRequest.GetQueryInt("id");
                 if (this.id == 0)
                 {
                     PageErrorMsg("传输参数不正确");
@@ -32,8 +32,8 @@ namespace OS.Web.admin.settings
             }
             if (!Page.IsPostBack)
             {
-                ChkAdminLevel("user_mail_template", YLEnums.ActionEnum.View.ToString()); //检查权限
-                if (action == YLEnums.ActionEnum.Edit.ToString()) //修改
+                ChkAdminLevel("user_mail_template", OSEnums.ActionEnum.View.ToString()); //检查权限
+                if (action == OSEnums.ActionEnum.Edit.ToString()) //修改
                 {
                     ShowInfo(this.id);
                 }
@@ -66,7 +66,7 @@ namespace OS.Web.admin.settings
 
             if (bll.Add(model) > 0)
             {
-                AddAdminLog(YLEnums.ActionEnum.Add.ToString(), "添加邮件模板:" + model.title); //记录日志
+                AddAdminLog(OSEnums.ActionEnum.Add.ToString(), "添加邮件模板:" + model.title); //记录日志
                 return true;
             }
             return false;
@@ -87,7 +87,7 @@ namespace OS.Web.admin.settings
 
             if (bll.Update(model))
             {
-                AddAdminLog(YLEnums.ActionEnum.Edit.ToString(), "修改邮件模板:" + model.title); //记录日志
+                AddAdminLog(OSEnums.ActionEnum.Edit.ToString(), "修改邮件模板:" + model.title); //记录日志
                 result = true;
             }
 
@@ -98,9 +98,9 @@ namespace OS.Web.admin.settings
         //保存
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            if (action == YLEnums.ActionEnum.Edit.ToString()) //修改
+            if (action == OSEnums.ActionEnum.Edit.ToString()) //修改
             {
-                ChkAdminLevel("user_mail_template", YLEnums.ActionEnum.Edit.ToString()); //检查权限
+                ChkAdminLevel("user_mail_template", OSEnums.ActionEnum.Edit.ToString()); //检查权限
                 if (!DoEdit(this.id))
                 {
                     PageErrorMsg("保存过程中发生错误啦");
@@ -109,7 +109,7 @@ namespace OS.Web.admin.settings
             }
             else //添加
             {
-                ChkAdminLevel("user_mail_template", YLEnums.ActionEnum.Add.ToString()); //检查权限
+                ChkAdminLevel("user_mail_template", OSEnums.ActionEnum.Add.ToString()); //检查权限
                 if (!DoAdd())
                 {
                     PageErrorMsg("保存过程中发生错误啦");

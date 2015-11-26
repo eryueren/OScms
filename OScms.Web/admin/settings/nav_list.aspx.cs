@@ -15,7 +15,7 @@ namespace OS.Web.admin.settings
         {
             if (!Page.IsPostBack)
             {
-                ChkAdminLevel("app_navigation_list", YLEnums.ActionEnum.View.ToString()); //检查权限
+                ChkAdminLevel("app_navigation_list", OSEnums.ActionEnum.View.ToString()); //检查权限
                 RptBind();
             }
         }
@@ -55,7 +55,7 @@ namespace OS.Web.admin.settings
         //保存排序
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            ChkAdminLevel("app_navigation_list", YLEnums.ActionEnum.Edit.ToString()); //检查权限
+            ChkAdminLevel("app_navigation_list", OSEnums.ActionEnum.Edit.ToString()); //检查权限
             BLL.contents.article_category bll = new BLL.contents.article_category();
             for (int i = 0; i < rptList.Items.Count; i++)
             {
@@ -67,14 +67,14 @@ namespace OS.Web.admin.settings
                 }
                 bll.UpdateField(id, "sort_id=" + sortId.ToString());
             }
-            AddAdminLog(YLEnums.ActionEnum.Edit.ToString(), "保存导航排序"); //记录日志
+            AddAdminLog(OSEnums.ActionEnum.Edit.ToString(), "保存导航排序"); //记录日志
             Response.Redirect("nav_list.aspx");
         }
 
         //删除导航
         protected void btnDelete_Click(object sender, EventArgs e)
         {
-            ChkAdminLevel("app_navigation_list", YLEnums.ActionEnum.Delete.ToString()); //检查权限
+            ChkAdminLevel("app_navigation_list", OSEnums.ActionEnum.Delete.ToString()); //检查权限
             BLL.contents.article_category bll = new BLL.contents.article_category();
             for (int i = 0; i < rptList.Items.Count; i++)
             {
@@ -85,7 +85,7 @@ namespace OS.Web.admin.settings
                     bll.Delete(id);
                 }
             }
-            AddAdminLog(YLEnums.ActionEnum.Delete.ToString(), "删除导航信息"); //记录日志
+            AddAdminLog(OSEnums.ActionEnum.Delete.ToString(), "删除导航信息"); //记录日志
         
             Response.Redirect("nav_list.aspx");
         }
@@ -95,7 +95,7 @@ namespace OS.Web.admin.settings
             StringBuilder sb = new StringBuilder();
             if (nav_type.Trim() == "System" && parent_id==0)
             {
-                sb.Append(" <a href=\"nav_edit.aspx?action=" + YLEnums.ActionEnum.Add + "&id=" + id + "\">添加子级</a>");
+                sb.Append(" <a href=\"nav_edit.aspx?action=" + OSEnums.ActionEnum.Add + "&id=" + id + "\">添加子级</a>");
             }
             return sb.ToString();
         }

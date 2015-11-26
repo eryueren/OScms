@@ -10,7 +10,7 @@ namespace OS.Web.admin.dialog
 {
     public partial class dialog_category : Web.UI.ManagePage
     {
-        private int id = YLRequest.GetQueryInt("id");
+        private int id = OSRequest.GetQueryInt("id");
         protected void Page_Load(object sender, EventArgs e)
         {
             if (id == 0)

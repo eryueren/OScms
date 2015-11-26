@@ -33,7 +33,7 @@
   <div id="floatHead" class="toolbar">
     <div class="l-list">
       <ul class="icon-list">
-        <li><a class="add" href="adv_edit.aspx?action=<%=YLEnums.ActionEnum.Add %>"><i></i><span>新增</span></a></li>
+        <li><a class="add" href="adv_edit.aspx?action=<%=OSEnums.ActionEnum.Add %>"><i></i><span>新增</span></a></li>
         <li><a class="all" href="javascript:;" onclick="checkAll(this);"><i></i><span>全选</span></a></li>
         <li><asp:LinkButton ID="btnDelete" runat="server" CssClass="del" OnClientClick="return ExePostBack('btnDelete');" onclick="btnDelete_Click"><i></i><span>删除</span></asp:LinkButton></li>
       </ul>
@@ -82,7 +82,7 @@
       <asp:CheckBox ID="chkId" CssClass="checkall" runat="server" />
       <asp:HiddenField ID="hidId" Value='<%#Eval("id")%>' runat="server" />
     </td>
-    <td><a href="adv_edit.aspx?action=<%=YLEnums.ActionEnum.Edit %>&id=<%#Eval("id")%>"><%#Eval("title")%></a></td>
+    <td><a href="adv_edit.aspx?action=<%=OSEnums.ActionEnum.Edit %>&id=<%#Eval("id")%>"><%#Eval("title")%></a></td>
     <td><%#GetTypeName(Eval("type").ToString())%></td>
     <td align="center"><%#Eval("view_num")%></td>
     <td><%#Eval("price")%>元/月</td>
@@ -92,7 +92,7 @@
     <td align="center">
       <a href="bar_list.aspx?aid=<%#Eval("id")%>">内容</a>&nbsp;
       <a href="adv_view.aspx?id=<%#Eval("id")%>">调用</a>&nbsp;
-      <a href="adv_edit.aspx?action=<%=YLEnums.ActionEnum.Edit %>&id=<%#Eval("id")%>">编辑</a>
+      <a href="adv_edit.aspx?action=<%=OSEnums.ActionEnum.Edit %>&id=<%#Eval("id")%>">编辑</a>
     </td>
   </tr>
 </ItemTemplate>

@@ -144,43 +144,6 @@ namespace  OS.DAL.users
         }
 
         /// <summary>
-        /// 删除一条数据
-        /// </summary>
-        public bool Delete(int id)
-        {
-            //删除会员组价格
-            StringBuilder strSql1 = new StringBuilder();
-            strSql1.Append("delete from " + databaseprefix + "user_group_price ");
-            strSql1.Append(" where group_id=@group_id ");
-            SqlParameter[] parameters1 = {
-                    new SqlParameter("@group_id", SqlDbType.Int,4)};
-            parameters1[0].Value = id;
-            List<CommandInfo> sqllist = new List<CommandInfo>();
-            CommandInfo cmd = new CommandInfo(strSql1.ToString(), parameters1);
-            sqllist.Add(cmd);
-
-            //删除主表
-            StringBuilder strSql = new StringBuilder();
-            strSql.Append("delete from " + databaseprefix + "user_groups ");
-            strSql.Append(" where id=@id");
-            SqlParameter[] parameters = {
-					new SqlParameter("@id", SqlDbType.Int,4)};
-            parameters[0].Value = id;
-            cmd = new CommandInfo(strSql.ToString(), parameters);
-            sqllist.Add(cmd);
-
-            int rowsAffected = DbHelperSQL.ExecuteSqlTran(sqllist);
-            if (rowsAffected > 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        /// <summary>
         /// 得到一个对象实体
         /// </summary>
         public Model.users.user_groups GetModel(int id)

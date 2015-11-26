@@ -14,10 +14,10 @@ namespace OS.Web.admin.manager
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            this.keywords = YLRequest.GetQueryString("keywords");
+            this.keywords = OSRequest.GetQueryString("keywords");
             if (!Page.IsPostBack)
             {
-                ChkAdminLevel("manager_role", YLEnums.ActionEnum.View.ToString()); //检查权限
+                ChkAdminLevel("manager_role", OSEnums.ActionEnum.View.ToString()); //检查权限
                 Model.managers.manager model = GetAdminInfo(); //取得当前管理员信息
                 RptBind("role_type>=" + model.role_type + CombSqlTxt(this.keywords));
             }
@@ -73,7 +73,7 @@ namespace OS.Web.admin.manager
         //批量删除
         protected void btnDelete_Click(object sender, EventArgs e)
         {
-            ChkAdminLevel("manager_role", YLEnums.ActionEnum.Delete.ToString()); //检查权限
+            ChkAdminLevel("manager_role", OSEnums.ActionEnum.Delete.ToString()); //检查权限
             int sucCount = 0; //成功数量
             int errorCount = 0; //失败数量
             BLL.managers.manager_role bll = new BLL.managers.manager_role();
@@ -93,7 +93,7 @@ namespace OS.Web.admin.manager
                     }
                 }
             }
-            AddAdminLog(YLEnums.ActionEnum.Delete.ToString(), "删除管理角色" + sucCount + "条，失败" + errorCount + "条"); //记录日志
+            AddAdminLog(OSEnums.ActionEnum.Delete.ToString(), "删除管理角色" + sucCount + "条，失败" + errorCount + "条"); //记录日志
             Response.Redirect(Utils.CombUrlTxt("role_list.aspx", "keywords={0}", txtKeywords.Text.Trim()));
         }
     }

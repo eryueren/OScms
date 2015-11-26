@@ -76,7 +76,7 @@
             <div id="floatHead" class="toolbar">
                 <div class="l-list">
                     <ul class="icon-list">
-                        <li><a class="add" href="user_edit.aspx?action=<%=YLEnums.ActionEnum.Add %>"><i></i><span>新增</span></a></li>
+                        <li><a class="add" href="user_edit.aspx?action=<%=OSEnums.ActionEnum.Add %>"><i></i><span>新增</span></a></li>
                         <li><%--<asp:LinkButton ID="btnSmsPost" runat="server"  CssClass="list" OnClientClick="return CheckPostBack('btnSmsPost');" onclick="btnSmsPost_Click"><i></i><span>短信</span></asp:LinkButton>--%></li>
                         <li><a class="all" href="javascript:;" onclick="checkAll(this);"><i></i><span>全选</span></a></li>
                         <li>
@@ -119,7 +119,7 @@
                     </td>
                     <td>
                         <div class="user-box">
-                            <a href="user_edit.aspx?action=<%#YLEnums.ActionEnum.Edit %>&id=<%#Eval("id")%>">
+                            <a href="user_edit.aspx?action=<%#OSEnums.ActionEnum.Edit %>&id=<%#Eval("id")%>">
                                 <h4><b><%#Eval("user_name")%></b> (昵称：<%#Eval("nick_name")%>)</h4>
                             </a>
                             <i>注册时间：<%#string.Format("{0:g}",Eval("reg_time"))%></i>
@@ -136,7 +136,7 @@
                     <%--<td align="center"><%#Eval("amount")%></td>--%>
                     <%--<td align="center"><%#Eval("point")%></td>--%>
                     <td align="center"><%#GetUserStatus(Convert.ToInt32(Eval("status")))%></td>
-                    <td align="center"><a href="user_edit.aspx?action=<%#YLEnums.ActionEnum.Edit %>&id=<%#Eval("id")%>">修改</a></td>
+                    <td align="center"><a href="user_edit.aspx?action=<%#OSEnums.ActionEnum.Edit %>&id=<%#Eval("id")%>">修改</a></td>
                 </tr>
             </ItemTemplate>
             <FooterTemplate>
